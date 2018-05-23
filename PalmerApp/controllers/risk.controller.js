@@ -16,7 +16,7 @@ exports.getRisk = async function(req, res, next)
 	try{
 		var risk = await RiskService.getRisk({}, page, limit)
 		
-		return res.status(200).json({status: 200, data: todos, message: "Got the risk!"})
+		return res.status(200).json({status: 200, data: risk, message: "Got the risk!"})
 	}catch(e){
 		return res.status(400).json({status: 400, message: e.message});
 	}
