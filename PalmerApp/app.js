@@ -32,10 +32,12 @@ app.use('/users', users);
 .then(() => {console.log(`Successfully Connected to the Mongodb Database at URL: mongodb://127.0.0.1:27017/palmer`)})
 .catch(() => {console.log(`Error Connecting to the Mongodb Database at URL : mongodb://127.0.0.1:27017/palmer`)})
 */
+
 //mongoose prod connection
 mongoose.connect(process.env.MONGODB_URI, {useMongoClient: true})
 .then(() => {console.log(`Successfully Connected to the Mongodb Database`)})
 .catch(() => {console.log(`Error Connecting to the Mongodb Database`)})
+
 
 //CORS Configuration
 app.use(function(req, res, next) {
