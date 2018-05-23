@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var risk = require('./api/todos.route')
+var risk = require('./risk.route')
 
 router.use('/risk', risk);
 
