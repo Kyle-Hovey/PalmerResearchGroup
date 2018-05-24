@@ -1,6 +1,6 @@
-//Access the service
+//Getting Risk Model
 
-var RiskService = require('../services/risk.service')
+var Risk = require('../models/risk.model')
 
 //Save in _this
 
@@ -10,11 +10,8 @@ _this = this
 
 exports.getRisk = async function(req, res, next)
 {
-	var page = req.query.page ? req.query.page : 1
-	var limit = req.query.limit ? req.query.limit : 10;
-	
 	try{
-		var risk = await RiskService.getRisk({}, page, limit)
+		var risk = await Risk.findOne({'risk' : {$gt : .5}})
 		
 		return res.status(200).json({status: 200, data: risk, message: "Got the risk!"})
 	}catch(e){
