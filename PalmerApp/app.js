@@ -37,7 +37,6 @@ app.use('/api', api);
 .catch(() => {console.log(`Error Connecting to the Mongodb Database at URL : mongodb://127.0.0.1:27017/palmer`)})
 */
 mongoose.connect(process.env.MONGODB_URI, {useMongoClient: true})
->>>>>>> Stashed changes
 .then(() => {console.log(`Successfully Connected to the Mongodb Database`)})
 .catch(() => {console.log(`Error Connecting to the Mongodb Database`)})
 
