@@ -6,6 +6,9 @@ var RiskSchema = new mongoose.Schema({
 	risk : Number,
 	latitude : Number,
 	longitude : Number
+},
+{
+	collection : 'risk'
 })
 
 RiskSchema.plugin(mongoosePaginate)
