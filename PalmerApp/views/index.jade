@@ -1,5 +1,16 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+	h1= title
+	p Welcome to #{title}! So far you can look at one data point. :)
+	form(name="add-estimation", method="post")
+		div.input
+			span.label Latitude 
+			input(type="text", name="latitude")
+		div.input
+			span.label Longitude 
+			input(type="text", name="longitude")
+		div.actions
+			input(type="submit", value="Get Risk!")
+body
+	
