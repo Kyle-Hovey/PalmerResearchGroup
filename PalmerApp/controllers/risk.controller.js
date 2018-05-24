@@ -11,10 +11,21 @@ _this = this
 exports.getRisk = async function(req, res, next)
 {
 	try{
-		var risk = await Risk.findOne({'risk' : {$gt : .5}})
+		var risk = await Risk.findOne({'risk' : {$gt : .5}});
 		
-		return res.status(200).json({status: 200, data: risk, message: "Got the risk!"})
+		return res.status(200).json({status: 200, data: risk, message: "Got the risk!"});
 	}catch(e){
+		return res.status(400).json({status: 400, message: e.message});
+	}
+}
+
+exports.getRiskFromLocation = async function(req, res, next) 
+{
+	try{
+		var risk = await Risk.findOne({'latitude' : req.params.latitude, 'longitude' : req.params.longitude});
+
+		return res.status(200).json({status: 200, data: risk, message: "Got the risk from latitude: " + req.params.latitude + " and longitude: " + req.params.longitude});
+	} catch(e){
 		return res.status(400).json({status: 400, message: e.message});
 	}
 }

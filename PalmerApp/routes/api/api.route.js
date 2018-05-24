@@ -1,7 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var risk = require('./risk.route')
+var RiskController = require('../../controllers/risk.controller');
 
-router.use('/risk', risk);
+router.use('/risk', RiskController.getRisk);
+
+router.use('/:latitude-:longitude', RiskController.getRiskFromLocation);
 
 module.exports = router;
