@@ -32,17 +32,15 @@ app.use('/users', users);
 app.use('/api', api);
 
 //mongoose local connection
-mongoose.connect('mongodb://127.0.0.1:27017/palmer', {useMongoClient: true})
+/*mongoose.connect('mongodb://127.0.0.1:27017/palmer', {useMongoClient: true})
 .then(() => {console.log(`Successfully Connected to the Mongodb Database at URL: mongodb://127.0.0.1:27017/palmer`)})
 .catch(() => {console.log(`Error Connecting to the Mongodb Database at URL : mongodb://127.0.0.1:27017/palmer`)})
-
-
-//mongoose prod connection
-/*
+*/
 mongoose.connect(process.env.MONGODB_URI, {useMongoClient: true})
+>>>>>>> Stashed changes
 .then(() => {console.log(`Successfully Connected to the Mongodb Database`)})
 .catch(() => {console.log(`Error Connecting to the Mongodb Database`)})
-*/
+
 
 //CORS Configuration
 app.use(function(req, res, next) {
