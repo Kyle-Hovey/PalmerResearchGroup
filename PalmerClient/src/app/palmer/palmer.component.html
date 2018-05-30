@@ -1,13 +1,21 @@
 <h2>Latitude: {{palmer.latitude}}</h2>
 <h2>Longitude: {{palmer.longitude}}</h2>
-<div>
-    <label>Latitude:
-      <input [(ngModel)]="palmer.latitude" placeholder="Latitude">
-    </label>
+<div class='container'>
+	<form (ngSubmit)='calculateRisk(latitude.value, longitude.value)' #riskForm='ngForm'>
+		<div class='form-group'>
+    		<div>
+	    		<label for='latitude'>Latitude: </label>
+    	  			<input #latitude type='text' class='form-control' id='latitude' [(ngModel)]="palmer.latitude" name='latitude' placeholder="Latitude">
+			</div>
+			<div>
+	    		<label>Longitude: </label>
+    	  			<input #longitude type='text' class='form-control' id='longitude' [(ngModel)]="palmer.longitude" name='longitude' placeholder="Longitude">
+			</div>
+   		</div>
+   		<div>
+			<button type="submit">Calculate Risk</button>
+		</div>
+	</form>
 </div>
-<div>
-    <label>Longitude:
-      <input [(ngModel)]="palmer.longitude" placeholder="Longitude">
-    </label>
-</div>
+
 <div><span>Risk: </span>{{palmer.risk}}</div>
