@@ -26,6 +26,15 @@ export class PalmerComponent implements OnInit {
     this.getRiskFromLatLon(lat, lon);
   }
 
+  onMarked(latLon){
+    console.log(latLon);
+    var latLonReplaced = latLon.replace(/[()]/g, "");
+    console.log(latLonReplaced);
+    var latLonArray = latLonReplaced.split(",");
+    console.log(latLonArray);
+    this.getRiskFromLatLon(latLonArray[0].trim(), latLonArray[1].trim())
+  }
+
   getRiskFromLatLon(lat, lon) {
     this.palmerService.getRiskFromLatLon(lat, lon)
     .subscribe((data: Palmer) => this.palmer = {
@@ -34,5 +43,4 @@ export class PalmerComponent implements OnInit {
       longitude: data['longitude']
     })
   }
- 
 }

@@ -7,12 +7,14 @@ import { PalmerComponent } from './palmer/palmer.component';
 import { RiskComponent } from './risk/risk.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PalmerService } from './palmer.service';
+import { GoogleMapComponent } from './google-map/google-map.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PalmerComponent,
     RiskComponent,
+    GoogleMapComponent,
   ],
   imports: [
     BrowserModule,
