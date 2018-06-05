@@ -1,5 +1,5 @@
 export class Palmer {
-  risk: number;
+  risk: string;
   latitude: string;
   longitude: string;
 }
