@@ -12,7 +12,7 @@ var _this = this;
 })
 export class PalmerComponent implements OnInit {
   palmer: Palmer = {
-  risk: 0,
+  risk: "",
   latitude: "",
   longitude: ""
   };
@@ -38,7 +38,9 @@ export class PalmerComponent implements OnInit {
 
       if (!data){
         this.palmer = {
-        risk: "Not Available for this point."
+        risk: "Not available for this area.",
+        latitude: "",
+        longitude: ""
         }
       }
       else {
