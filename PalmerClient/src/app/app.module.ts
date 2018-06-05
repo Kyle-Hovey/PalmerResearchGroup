@@ -11,13 +11,15 @@ import { HomePageComponent } from './homePage/homePage.component';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from "@angular/router";
 import { AppComponents, AppRoutes } from "./app.routing";
+import { GoogleMapComponent } from './google-map/google-map.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PalmerComponent,
     RiskComponent,
-    ...AppComponents
+    ...AppComponents,
+    GoogleMapComponent,
   ],
   imports: [
     BrowserModule,
