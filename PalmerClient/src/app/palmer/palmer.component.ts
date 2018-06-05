@@ -38,7 +38,9 @@ export class PalmerComponent implements OnInit {
 
       if (!data){
         this.palmer = {
-        risk: "Not Available for this point."
+        risk: "Data point not yet available",
+		latitude: lat,
+		longitude: lon
         }
       }
       else {
