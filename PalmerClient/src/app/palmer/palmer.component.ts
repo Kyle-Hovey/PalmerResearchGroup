@@ -27,20 +27,28 @@ export class PalmerComponent implements OnInit {
   }
 
   onMarked(latLon){
-    console.log(latLon);
-    var latLonReplaced = latLon.replace(/[()]/g, "");
-    console.log(latLonReplaced);
-    var latLonArray = latLonReplaced.split(",");
+    var latLonArray = latLon.split(" ");
     console.log(latLonArray);
     this.getRiskFromLatLon(latLonArray[0].trim(), latLonArray[1].trim())
   }
 
   getRiskFromLatLon(lat, lon) {
     this.palmerService.getRiskFromLatLon(lat, lon)
-    .subscribe((data: Palmer) => this.palmer = {
-      risk: data['risk'],
-      latitude: data['latitude'],
-      longitude: data['longitude']
-    })
+    .subscribe((data: Palmer) => {
+
+      if (!data){
+        this.palmer = {
+        risk: "Not Available for this point."
+        }
+      }
+      else {
+      this.palmer = {
+        risk: data['risk'],
+        latitude: data['latitude'],
+        longitude: data['longitude']
+      };
+      console.log(data);
+      }
+    });
   }
 }

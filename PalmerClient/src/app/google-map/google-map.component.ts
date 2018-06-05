@@ -1,6 +1,7 @@
-import { Component, OnInit, NgZone, EventEmitter, Input, Output } from '@angular/core';
+import { Component, OnInit, NgZone, EventEmitter, Input, Output, ViewChild, ElementRef } from '@angular/core';
 import { } from '@types/googlemaps';
-import { ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { MapsAPILoader, MouseEvent } from '@agm/core';
 
 declare const google: any;
 
@@ -11,29 +12,79 @@ declare const google: any;
 })
 export class GoogleMapComponent implements OnInit {
 
-  @ViewChild('gmap') gmapElement: any;
+  public latitude: number;
+  public longitude: number;
+  public searchControl: FormControl;
+  public zoom: number;
+
+  public markers = []
+  
   @Output() marked = new EventEmitter<string>();
-  location = 'default location, update on map click';
-  markers = [];
-  map: google.maps.Map;
+  
+  @ViewChild("search")
+  public searchElementRef: ElementRef;
 
-
-  constructor(private zone: NgZone) { }
+  constructor(
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone
+  ) {}
 
   ngOnInit() {
-  	
-  	let mapProp = {
-  		center: new google.maps.LatLng(41.8780, -93.0977),
-  		zoom: 6,
-  		mapTypeId: 'hybrid',
-  		disableDefaultUI: true
-  	}
+    this.zoom = 6;
+    this.latitude = 41.8780;
+    this.longitude = -93.0977;
 
-  	this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp);  
+    this.searchControl = new FormControl();
 
-    google.maps.event.addListener(this.map, 'click', (e) => this.zone.run(() => this.placeMarker(e)));
+    this.setCurrentPosition();
+
+    this.mapsAPILoader.load().then(() => {
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+        types: ["geocode"],
+      });
+      autocomplete.addListener("place_changed", () => {
+        this.ngZone.run(() => {
+
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+
+          this.latitude = place.geometry.location.lat();
+          this.longitude = place.geometry.location.lng();
+          this.zoom = 12;
+        });
+      });
+    });
   }
 
+  clickedMarker(label: string, index: number) {
+    console.log(`clicked the marker ${label || index}`)
+  }
+
+  mapClicked($event: MouseEvent) {
+    this.markers = [];
+    var lat = $event.coords.lat;
+    var lng = $event.coords.lng;
+    console.log(lat + " " + lng)
+    this.marked.emit(lat + " " + lng);
+    this.markers.push({
+      latitude: lat,
+      longitude: lng,
+    })
+  }
+
+  private setCurrentPosition() {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.latitude = position.coords.latitude;
+        this.longitude = position.coords.longitude;
+        this.zoom = 12;
+      });
+    }
+  }
+/*
   private placeMarker(event) {
     this.deleteMarkers();
     var latLng = event.latLng;
@@ -49,7 +100,7 @@ export class GoogleMapComponent implements OnInit {
     this.markers.push(marker);
     this.marked.emit(this.location);
   }
-
+*/
   setMapOnAll(map) {
     for (var i = 0; i < this.markers.length; i++) {
       this.markers[i].setMap(map);
