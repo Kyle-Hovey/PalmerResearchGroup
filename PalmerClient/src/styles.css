@@ -1,22 +1,139 @@
-/* Application-wide Styles */
-h1 {
-  color: #369;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 250%;
-}
-h2, h3 {
-  color: #444;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: lighter;
-}
 body {
-  margin: 2em;
+	font-family: 'Catamaran';
+	background-color: #fff;
 }
-body, input[text], button {
-  color: #888;
-  font-family: Cambria, Georgia;
+
+#main {
+	margin-top: 120px;
+	padding: 10px;
 }
-/* everywhere else */
-* {
-  font-family: Arial, Helvetica, sans-serif;
+
+#navbar {
+	font-weight: 100;
+	float: right;
+	font-size: 16px;
+	padding-right: 30px;
+}
+
+#nav {
+	font-family: 'Lato';
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 80px;
+    width: 100%;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background: #015249;
+	white-space: nowrap;
+}
+
+#navbar ul {
+	list-style: none;
+	float: right;
+	margin: 0;
+	padding: 0;
+	display: flex;
+}
+
+#navbar ul li {
+	list-style: none;
+}
+
+#important {
+	list-style: none;
+	background: #71bf6e;
+}
+
+#navbar ul li a {
+	line-height: 80px;
+	padding: 12px 20px;
+	text-decoration: none;
+	text-transform: uppercase;
+	transition: .3s;
+	color: #fff;
+}
+
+#navbar ul li a:hover {
+	background-color: #000;
+	color: white;
+}
+
+#logo {
+	float: left;
+	font-size: 24px;
+	padding-left: 30px;
+	color: #fff;
+	display: flex;
+	align-items: center;
+}
+
+#picture img {
+	height: 60px;
+}
+
+#logotitle a {
+	color: #fff;
+	padding-left: 15px;
+	text-decoration: none;
+}
+
+#bodytitle {
+	width: 1000px;
+	height: auto;
+	margin: 0 auto;
+	padding-bottom: 20px;
+	padding-top: 10px;
+	text-align: justify;
+	font-size: 65px;
+	line-height: 30px;
+	text-align: center;
+}
+
+#bodytext {
+	width: 1000px;
+	height: auto;
+	margin: 0 auto;
+	text-align: justify;
+	font-size: 20px;
+	line-height: 30px;
+}
+
+p {
+	text-indent: 2em;
+}
+
+#largetextbox {
+	height: 12em;
+	width: 30em;
+    padding: 10px 10px;
+    border: solid thin gray;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+	margin-bottom: 20px;
+	font-family:inherit;
+}
+
+#contactinput {
+	width: 20%;
+    padding: 10px 10px;
+    border: solid thin gray;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+	margin-bottom: 20px;
+	font-family:inherit;
+}
+
+#contactsubmit {
+	width: 10%;
+    padding: 10px 10px;
+    border: solid thin gray;
+    border-radius: 4px;
+    background-color: #f0f0f0;
+}
+
+form u {
+	font-size: 20px;
 }

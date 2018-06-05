@@ -7,17 +7,25 @@ import { PalmerComponent } from './palmer/palmer.component';
 import { RiskComponent } from './risk/risk.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PalmerService } from './palmer.service';
+import { HomePageComponent } from './homePage/homePage.component';
+import { HttpModule } from '@angular/http';
+import { RouterModule } from "@angular/router";
+import { AppComponents, AppRoutes } from "./app.routing";
 
 @NgModule({
   declarations: [
     AppComponent,
     PalmerComponent,
     RiskComponent,
+    ...AppComponents
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
+	HttpModule,
+    RouterModule,
+    RouterModule.forRoot(AppRoutes)
   ],
   providers: [
     PalmerService

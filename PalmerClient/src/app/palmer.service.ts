@@ -10,7 +10,7 @@ import 'rxjs/add/operator/map';
 export class PalmerService {
 
   api_url = 'http://localhost:3000';
-  riskUrl = `${this.api_url}/api/risk`;
+  riskUrl = '${this.api_url}/api/risk';
 
   latLonUrl = `${this.api_url}/api/`;
   
@@ -19,9 +19,9 @@ export class PalmerService {
   constructor(private http: HttpClient) { }
 
   getPalmer() {
-    return this.http.get(this.riskUrl);
-  }
-
+	return this.http.get(this.riskUrl);
+	}
+  
   getRiskFromLatLon(lat, lon) {
     return this.http.get(this.latLonUrl + lat + '-' + lon);
   }

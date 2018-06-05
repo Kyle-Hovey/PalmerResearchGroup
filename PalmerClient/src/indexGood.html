@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+	<header>
+		<link href="//fonts.googleapis.com/css?family=Quicksand" rel='stylesheet'>
+	</header>
+	<body ng-app="mainApp">
+		<div id="nav">
+			<div id="logo">Simpson College Palmer Project</div>
+			<div id="navbar">
+				<ul>
+					<li><a href="">Home</a></li>
+					<li><a href="our-team.html">Our Team</a></li>
+					<li><a href="development">Development</a></li>
+					<li><a href="risk">Risk Assessment Webtool</a></li>
+					<li><a href="contact">Contact Us</a></li>
+				</ul>
+			</div>
+		</div>
+		<div id="main">
+			<div id="bodytitle">
+				Welcome.
+			</div>
+			<div id="bodytext">
+				<section class="content">
+				</section>
+			</div>
+		</div>
+		<div ng-view></div>
+		
+		<script>
+		var app = angular.module("mainApp", ["ngRoute"]);
+		app.config(function($routeProvider) {
+		$routeProvider
+		.when("/", {
+			templateUrl: "index.html"
+		})
+		.when("/our-team", {
+			templateUrl: "our-team.html"
+		})
+		.when("/development", {
+			templateUrl: "development.html"
+		})
+		</script>
+	</body>
+</html>
