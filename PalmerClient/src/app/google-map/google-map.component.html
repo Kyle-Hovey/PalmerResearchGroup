@@ -1,1 +1,16 @@
-<div #gmap style="width:500px;height:380px;"></div>
+<div class="container">
+	
+	<div class="form-group">
+		<input placeholder="Search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
+	</div>
+	
+	<agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" [zoomControl]="false" [streetViewControl]="false" (mapClick)="mapClicked($event)">
+        
+        <agm-marker *ngFor="let m of markers; let i = index" (markerClick)="clickedMarker (m.label, i)" [latitude]="m.latitude" [longitude]="m.longitude"> [label]="m.label" [markerDraggable]="m.draggable" (dragEnd)="markerDragEnd(m, $event)"</agm-marker>
+        
+        <agm-info-window>
+    		<strong>InfoWindow content</strong>
+    	</agm-info-window>
+    
+    </agm-map>
+</div>

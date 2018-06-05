@@ -34,6 +34,8 @@ exports.getRiskFromLocation = async function(req, res, next)
 		var finalLong = tempLong.toString();
 		console.log(tempLat);
 		console.log(tempLong);
+		console.log(finalLat);
+		console.log(finalLong);
 		var risk = await Risk.findOne({'latitude' : finalLat, 'longitude' : finalLong});
 
 		return res.json(risk);

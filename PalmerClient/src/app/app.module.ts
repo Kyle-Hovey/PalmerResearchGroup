@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
- 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // <-- NgModel lives here
+import { AgmCoreModule } from '@agm/core';
+
 import { AppComponent } from './app.component';
 import { PalmerComponent } from './palmer/palmer.component';
 import { RiskComponent } from './risk/risk.component';
@@ -24,10 +25,15 @@ import { GoogleMapComponent } from './google-map/google-map.component';
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
 	HttpModule,
     RouterModule,
-    RouterModule.forRoot(AppRoutes)
+    RouterModule.forRoot(AppRoutes),
+    AgmCoreModule.forRoot({
+      apiKey: "AIzaSyDKr6lrHj-ALXJoW7MI1g-Fm9CjSUqWEOY",
+      libraries: ["places"]
+    })
   ],
   providers: [
     PalmerService
