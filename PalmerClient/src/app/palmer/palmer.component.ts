@@ -33,17 +33,24 @@ export class PalmerComponent implements OnInit {
   }
 
   getRiskFromLatLon(lat, lon) {
-    this.palmerService
-      .getRiskFromLatLon(lat, lon)
-      .then((palmer: Palmer[]) => {
-        this.palmer = palmer.map((palmer) => {
-          if (!palmer) {
-            palmer.risk = 'Not Available at this location.'
-          }
+    this.palmerService.getRiskFromLatLon(lat, lon)
+    .subscribe((data: Palmer) => {
 
-          return palmer;
-        });
-      });
-    }
+      if (!data){
+        this.palmer = {
+        risk: "Not available for this area.",
+        latitude: "",
+        longitude: ""
+        }
+      }
+      else {
+      this.palmer = {
+        risk: data['risk'],
+        latitude: data['latitude'],
+        longitude: data['longitude']
+      };
+      console.log(data);
+      }
+    });
   }
 }

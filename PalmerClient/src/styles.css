@@ -104,3 +104,36 @@ body {
 p {
 	text-indent: 2em;
 }
+
+#largetextbox {
+	height: 12em;
+	width: 30em;
+    padding: 10px 10px;
+    border: solid thin gray;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+	margin-bottom: 20px;
+	font-family:inherit;
+}
+
+#contactinput {
+	width: 20%;
+    padding: 10px 10px;
+    border: solid thin gray;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+	margin-bottom: 20px;
+	font-family:inherit;
+}
+
+#contactsubmit {
+	width: 10%;
+    padding: 10px 10px;
+    border: solid thin gray;
+    border-radius: 4px;
+    background-color: #f0f0f0;
+}
+
+form u {
+	font-size: 20px;
+}
