@@ -13,10 +13,6 @@ app.use(bodyParser.json());
 var distDir = __dirname + "/dist/PalmerClient";
 app.use(express.static(distDir));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/PalmerClient/index.html'));
-});
-
 var db;
 
 //mongoose local connection
@@ -57,8 +53,8 @@ app.get("/api/:lat-:lng", async function(req, res, next)
 		if (risk == null)
 		{
 			console.log("TRYING AGAIN");
-			var tempLat = (parseFloat(req.params.latitude) - 44.57338516) / -0.00061283;
-			var tempLong = (parseFloat(req.params.longitude) + 97.59552151) / 0.000838633;
+			var tempLat = (parseFloat(req.params.lat) - 44.57338516) / -0.00061283;
+			var tempLong = (parseFloat(req.params.lng) + 97.59552151) / 0.000838633;
 			tempLat = Math.round(tempLat / 20) * 20;
 			tempLong = Math.round(tempLong / 20) * 20;
 			console.log(tempLat);
@@ -69,4 +65,8 @@ app.get("/api/:lat-:lng", async function(req, res, next)
 	} catch(e){
 		return res.status(400).json({status: 400, message: e.message});
 	}
+});
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist/PalmerClient/index.html'));
 });
