@@ -8,13 +8,18 @@ var _this = this;
 @Component({
   selector: 'app-palmer',
   templateUrl: './palmer.component.html',
-  styleUrls: ['./palmer.component.css']
+  styleUrls: ['./palmer.component.css'],
+  providers: [PalmerService]
 })
+
 export class PalmerComponent implements OnInit {
+  
   palmer: Palmer = {
   risk: "",
   latitude: "",
-  longitude: ""
+  longitude: "",
+  xCoord: "",
+  yCoord: ""
   };
  
   constructor(private palmerService: PalmerService) { }
@@ -40,14 +45,18 @@ export class PalmerComponent implements OnInit {
         this.palmer = {
         risk: "Not available for this area.",
         latitude: "",
-        longitude: ""
+        longitude: "",
+        xCoord: "",
+        yCoord: ""
         }
       }
       else {
       this.palmer = {
         risk: data['risk'],
         latitude: data['latitude'],
-        longitude: data['longitude']
+        longitude: data['longitude'],
+        xCoord: data['xCoord'],
+        yCoord: data['yCoord']
       };
       console.log(data);
       }

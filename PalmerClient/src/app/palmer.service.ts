@@ -1,20 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { HttpClient, HttpErrorResponse} from '@angular/common/http';
-import { Response } from '@angular/http';
+import { Http, Response } from '@angular/http';
 import { Palmer } from './palmer';
 
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class PalmerService {
-
-  api_url = 'http://localhost:3000';
-  riskUrl = '${this.api_url}/api/risk';
-
-  latLonUrl = `${this.api_url}/api/`;
-  
-  palmer = Palmer;
+  private riskUrl = '/api/';
 
   constructor(private http: HttpClient) { }
 
@@ -23,7 +17,7 @@ export class PalmerService {
 	}
   
   getRiskFromLatLon(lat, lon) {
-    return this.http.get(this.latLonUrl + lat + '-' + lon);
+    return this.http.get(this.riskUrl + lat + '-' + lon);
   }
 
   private handleError (error: any): Promise<any> {
