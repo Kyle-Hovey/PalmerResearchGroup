@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Palmer } from '../palmer';
 import { PalmerService } from '../palmer.service';
 
@@ -21,7 +21,9 @@ export class PalmerComponent implements OnInit {
   xCoord: "",
   yCoord: ""
   };
- 
+
+  @Output() riskFound = new EventEmitter<Palmer>();
+
   constructor(private palmerService: PalmerService) { }
  
   ngOnInit() {
@@ -49,16 +51,16 @@ export class PalmerComponent implements OnInit {
         xCoord: "",
         yCoord: ""
         }
+        this.riskFound.emit(this.palmer);
       }
       else {
-      this.palmer = {
-        risk: data['risk'],
-        latitude: data['latitude'],
-        longitude: data['longitude'],
-        xCoord: data['xCoord'],
-        yCoord: data['yCoord']
-      };
-      console.log(data);
+        this.palmer = {
+          risk: data['risk'],
+          latitude: data['latitude'],
+          longitude: data['longitude'],
+          xCoord: data['xCoord'],
+          yCoord: data['yCoord']
+        };
       }
     });
   }

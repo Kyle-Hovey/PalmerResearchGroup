@@ -67,6 +67,6 @@ app.get("/api/:lat-:lng", async function(req, res, next)
 	}
 });
 
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/PalmerClient/index.html'));
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dist/PalmerClient/index.html'));
 });

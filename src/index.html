@@ -14,18 +14,6 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	</head>
 	<body>
-		<div class="navbarClass" id="nav">
-			<div class="navbarSection">
-				<a href="/">Home</a>
-				<a href="/team">Our Team</a>
-				<a href="/development">Development</a>
-				<a href="/palmer" id="important">Risk Assessment Webtool</a>
-				<a href="/contact">Contact Us</a>
-				<a href="javascript:void(0);" class="icon" onclick="accessMenu()">
-					<i class="fa fa-bars"></i>
-				</a>
-			</div>
-		</div>
 		<div class="main">
 			<div class="bodytext">
 				<app-root></app-root>
@@ -39,6 +27,11 @@
 			} else {
 				x.className = "navbarClass";
 			}
+		}
+		
+		function removeMenu() {
+			var x = document.getElementById("nav");
+			x.className = "navbarClass";
 		}
 		</script>
 	</body>
