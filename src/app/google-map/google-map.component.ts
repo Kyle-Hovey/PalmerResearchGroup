@@ -3,6 +3,8 @@ import { } from '@types/googlemaps';
 import { FormControl } from '@angular/forms';
 import { MapsAPILoader, MouseEvent } from '@agm/core';
 
+import { Palmer } from '../palmer';
+
 declare const google: any;
 
 @Component({
@@ -16,11 +18,34 @@ export class GoogleMapComponent implements OnInit {
   public longitude: number;
   public searchControl: FormControl;
   public zoom: number;
-
-  public markers = []
   
+  public isOpen: boolean;
+
+  private mapTypeId: string;
+
+  public content: string;
+
+  private _palmer: Palmer = {
+            risk: "",
+            latitude: "",
+            longitude: "",
+            xCoord: "",
+            yCoord: ""
+          };
+
+  public markers = [];
+  public infoWindows = [];
+
   @Output() marked = new EventEmitter<string>();
   
+  @Input()
+  set palmer(palmer: Palmer) {
+    this._palmer = (palmer);
+    console.log(this._palmer);
+  }
+
+  get palmer(): Palmer {return this._palmer; }
+
   @ViewChild("search")
   public searchElementRef: ElementRef;
 
@@ -33,6 +58,7 @@ export class GoogleMapComponent implements OnInit {
     this.zoom = 6;
     this.latitude = 41.8780;
     this.longitude = -93.0977;
+    this.mapTypeId = 'hybrid';
 
     this.searchControl = new FormControl();
 
@@ -40,7 +66,7 @@ export class GoogleMapComponent implements OnInit {
 
     this.mapsAPILoader.load().then(() => {
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-        types: ["geocode"],
+        types: ["geocode"]
       });
       autocomplete.addListener("place_changed", () => {
         this.ngZone.run(() => {
@@ -59,8 +85,12 @@ export class GoogleMapComponent implements OnInit {
     });
   }
 
-  clickedMarker(label: string, index: number) {
-    console.log(`clicked the marker ${label || index}`)
+  markerDragEnd(m: marker, $event: MouseEvent) {
+    console.log('dragEnd', m, $event);
+    var lat = $event.coords.lat;
+    var lng = $event.coords.lng;
+    console.log(lat + " " + lng)
+    this.marked.emit(lat + " " + lng);
   }
 
   mapClicked($event: MouseEvent) {
@@ -72,6 +102,7 @@ export class GoogleMapComponent implements OnInit {
     this.markers.push({
       latitude: lat,
       longitude: lng,
+      draggable: true
     })
   }
 
@@ -84,37 +115,11 @@ export class GoogleMapComponent implements OnInit {
       });
     }
   }
-/*
-  private placeMarker(event) {
-    this.deleteMarkers();
-    var latLng = event.latLng;
-    var marker = new google.maps.Marker({
-      position: latLng,
-      map: this.map,
-    });
-    this.map.panTo(latLng);
-    this.map.setZoom(14);
-    this.map.setCenter(marker.getPosition());
-    this.location = latLng.toString();
-    console.log(this.location);
-    this.markers.push(marker);
-    this.marked.emit(this.location);
-  }
-*/
-  setMapOnAll(map) {
-    for (var i = 0; i < this.markers.length; i++) {
-      this.markers[i].setMap(map);
-    }
-  }
+}
 
-  clearMarkers() {
-    this.setMapOnAll(null);
-  }
-
-  deleteMarkers() {
-    this.clearMarkers();
-    this.markers = [];
-  }
-
-
+interface marker {
+  lat: number;
+  lng: number;
+  label?: string;
+  draggable: boolean;
 }

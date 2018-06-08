@@ -1,22 +1,15 @@
 <div id="bodytitle">Risk Assessment v1.0</div>
-<h2>Latitude: {{palmer.latitude}}</h2>
-<h2>Longitude: {{palmer.longitude}}</h2>
 <div class='container'>
-	<form (ngSubmit)='calculateRisk(latitude.value, longitude.value)' #riskForm='ngForm'>
-		<div class='form-group'>
-    		<div>
-	    		<label for='latitude'>Latitude: </label>
-    	  			<input #latitude type='text' class='form-control' id='latitude' [(ngModel)]="palmer.latitude" name='latitude' placeholder="Latitude">
-			</div>
-			<div>
-	    		<label>Longitude: </label>
-    	  			<input #longitude type='text' class='form-control' id='longitude' [(ngModel)]="palmer.longitude" name='longitude' placeholder="Longitude">
-			</div>
-   		</div>
-   		<div>
-			<button type="submit">Calculate Risk</button>
-		</div>
-	</form>
+	<h2><u>About this tool</u></h2>
+	<p>
+		This tool provides you access to the model that our research team has created. The model calculates a risk value for nearly every location in the state of Iowa. The value is calculated relative to other locations that are known to have palmer infestations. The model takes into account factors outside of a farmers control such as average highest temperature, soil quality, elevation, rainfall and wind as well as demographic information to compute a risk value. The final risk value represents how similar or dissimilar the location is to places known to be infested with palmer.
+	</p>
+	<p>
+		We created the webtool below to share this information with you. It will provide you with a percentile value. For example: <strong>Risk: 90th percentile</strong> means that the location that you have clicked is in the top 10% of riskiest locations in Iowa. More detail about what this value represents can be found below the webtool. 
+	</p>
+	<p>
+		To use the webtool search for your location or pan by clicking and dragging on the map. Once you have found your location click on the map to get your risk.
+	</p>
 </div>
-<div><span>Risk: </span>{{palmer.risk}}</div>
-<app-google-map (marked)="onMarked($event)"></app-google-map>
+
+<app-google-map (marked)="onMarked($event)" [palmer]="palmer"></app-google-map>

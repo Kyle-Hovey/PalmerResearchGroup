@@ -66,3 +66,7 @@ app.get("/api/:lat-:lng", async function(req, res, next)
 		return res.status(400).json({status: 400, message: e.message});
 	}
 });
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dist/PalmerClient/index.html'));
+});

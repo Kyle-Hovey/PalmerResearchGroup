@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // <-- NgModel lives here
 import { AgmCoreModule } from '@agm/core';
+import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from "@angular/router";
@@ -40,7 +41,8 @@ import { RiskComponent } from './risk/risk.component';
     AgmCoreModule.forRoot({
       apiKey: "AIzaSyDKr6lrHj-ALXJoW7MI1g-Fm9CjSUqWEOY",
       libraries: ["places"]
-    })
+    }),
+    AgmSnazzyInfoWindowModule
   ],
   providers: [
     PalmerService
