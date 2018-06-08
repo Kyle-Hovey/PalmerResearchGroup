@@ -1,73 +1,77 @@
 body {
-	font-family: 'Catamaran';
-	background-color: #fff;
-}
-
-#main {
-	margin-top: 120px;
-	padding: 10px;
-}
-
-#navbar {
-	font-weight: 100;
-	float: right;
-	font-size: 16px;
-	padding-right: 30px;
-}
-
-#nav {
-	font-family: 'Lato';
-	position: fixed;
-	top: 0;
-	left: 0;
-	height: 80px;
-    width: 100%;
-	overflow: hidden;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	background: #015249;
-	white-space: nowrap;
-}
-
-#navbar ul {
-	list-style: none;
-	float: right;
+	font-family: 'Quicksand';
 	margin: 0;
-	padding: 0;
-	display: flex;
 }
 
-#navbar ul li {
-	list-style: none;
+.navbarClass {
+	overflow: hidden;
+	background-color: #015249;
 }
 
-#important {
-	list-style: none;
-	background: #71bf6e;
-}
-
-#navbar ul li a {
-	line-height: 80px;
-	padding: 12px 20px;
+.navbarClass a {
+	float: right;
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 16px 16px;
 	text-decoration: none;
-	text-transform: uppercase;
-	transition: .3s;
-	color: #fff;
+	font-size: 16px;
 }
 
-#navbar ul li a:hover {
+.navbarSection {
+	width: auto;
+	float: right;
+}
+
+.navbarSection a {
+	float: left;
+}
+
+.navbarClass a:hover {
 	background-color: #000;
 	color: white;
 }
 
-#logo {
-	float: left;
-	font-size: 24px;
-	padding-left: 30px;
-	color: #fff;
-	display: flex;
-	align-items: center;
+.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.navbarClass .icon {
+	display: none;
+}
+
+@media screen and (max-width: 900px) {
+	.navbarClass a {
+		display: none;
+	}
+	.navbarClass a.icon {
+		float: right;
+		display: block;
+	}
+}
+
+@media screen and (max-width: 900px) {
+	.navbarClass.responsiveMenu {
+		position: relative;
+	}
+	.navbarClass.responsiveMenu .icon {
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+	.navbarClass.responsiveMenu a {
+		float: none;
+		display: block;
+		text-align: left;
+	}
+	.navbarSection {
+		width: 100%;
+	}
+}	
+
+#important {
+	background: #71bf6e;
 }
 
 #picture img {
@@ -81,24 +85,46 @@ body {
 }
 
 #bodytitle {
-	width: 1000px;
+	width: 80%;
 	height: auto;
-	margin: 0 auto;
-	padding-bottom: 20px;
-	padding-top: 10px;
-	text-align: justify;
-	font-size: 65px;
-	line-height: 30px;
+	margin: 1vw auto;
+	margin-top: 3vw;
+	font-size: 11vw;
+	line-height: 11.5vw;
 	text-align: center;
 }
 
-#bodytext {
-	width: 1000px;
+.bodytext p{
+	width: 80%;
 	height: auto;
-	margin: 0 auto;
+	margin: 1vw auto;
+	margin-top: 3vw;
+	font-size: 3.5vw;
+	line-height: 5.25vw;
 	text-align: justify;
-	font-size: 20px;
-	line-height: 30px;
+}
+
+@media screen and (min-width: 650px) {
+	#bodytitle {
+		width: 70%;
+		margin: 10px auto;
+		margin-top: 25px;
+		font-size: 65px;
+		line-height: 70px;
+	}
+	
+	.bodytext p{
+		width: 70%;
+		margin: 10px auto;
+		margin-top: 25px;
+		font-size: 20px;
+		line-height: 30px;
+	}
+}
+
+form {
+	width: 80%;
+	margin: 2em auto 0.5em auto;
 }
 
 p {
@@ -108,7 +134,7 @@ p {
 #largetextbox {
 	height: 12em;
 	width: 30em;
-    padding: 10px 10px;
+    padding: 10px 10px 10px 10px;
     border: solid thin gray;
     border-radius: 4px;
     background-color: #f1f1f1;
@@ -118,20 +144,28 @@ p {
 
 #contactinput {
 	width: 20%;
-    padding: 10px 10px;
+    padding: 10px 10px 10px 10px;
     border: solid thin gray;
     border-radius: 4px;
     background-color: #f1f1f1;
 	margin-bottom: 20px;
+	margin-top: 5px;
 	font-family:inherit;
 }
 
 #contactsubmit {
 	width: 10%;
-    padding: 10px 10px;
+    padding: 10px 10px 10px 10px;
     border: solid thin gray;
     border-radius: 4px;
     background-color: #f0f0f0;
+	margin-top: 5px;
+	font-family:inherit;
+}
+
+#contactsubmit:hover {
+	color: white;
+	background-color: #000;
 }
 
 form u {
