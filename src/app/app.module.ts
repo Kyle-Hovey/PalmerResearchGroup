@@ -38,7 +38,7 @@ import { RiskComponent } from './risk/risk.component';
     HttpModule,
     AppRoutingModule,
     AgmCoreModule.forRoot({
-      apiKey: "AIzaSyDKr6lrHj-ALXJoW7MI1g-Fm9CjSUqWEOY",
+      apiKey: "GOOGLE_API_KEY",
       libraries: ["places"]
     })
   ],
