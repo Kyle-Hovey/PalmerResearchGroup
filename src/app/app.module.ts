@@ -15,7 +15,7 @@ import { HomePageComponent } from './homePage/homePage.component';
 import { TeamComponent } from './team/team.component';
 import { PalmerComponent } from './palmer/palmer.component';
 import { GoogleMapComponent } from './google-map/google-map.component';
-import { DevelopmentComponent } from './development/development.component';
+import { BlogComponent } from './blog/blog.component';
 import { ContactComponent } from './contact/contact.component';
 import { RiskComponent } from './risk/risk.component';
 
@@ -28,7 +28,7 @@ import { environment } from './../environments/environment';
     TeamComponent,
     PalmerComponent,
     GoogleMapComponent,
-    DevelopmentComponent,
+    BlogComponent,
     ContactComponent,
     RiskComponent,
   ],

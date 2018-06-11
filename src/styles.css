@@ -185,13 +185,13 @@ form u {
 }
 
 .high {
-	color: red;
+	color: #FF0700;
 }
 
 .mid {
-	color: yellow;
+	color: #FF7400;
 }
 
 .low {
-	color: green;
+	color: #015249;
 }

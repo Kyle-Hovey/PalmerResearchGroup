@@ -5,4 +5,5 @@ export class Palmer {
   longitude: string;
   xCoord: string;
   yCoord: string;
+  percentile: string;
 }

@@ -19,7 +19,8 @@ export class PalmerComponent implements OnInit {
   latitude: "",
   longitude: "",
   xCoord: "",
-  yCoord: ""
+  yCoord: "",
+  percentile: ""
   };
 
   @Output() riskFound = new EventEmitter<Palmer>();
@@ -49,7 +50,8 @@ export class PalmerComponent implements OnInit {
         latitude: "",
         longitude: "",
         xCoord: "",
-        yCoord: ""
+        yCoord: "",
+        percentile: ""
         }
         this.riskFound.emit(this.palmer);
       }
@@ -59,7 +61,8 @@ export class PalmerComponent implements OnInit {
           latitude: data['latitude'],
           longitude: data['longitude'],
           xCoord: data['xCoord'],
-          yCoord: data['yCoord']
+          yCoord: data['yCoord'],
+          percentile: data['percentile']
         };
       }
     });
