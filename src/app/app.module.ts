@@ -19,6 +19,8 @@ import { DevelopmentComponent } from './development/development.component';
 import { ContactComponent } from './contact/contact.component';
 import { RiskComponent } from './risk/risk.component';
 
+import { environment } from './../environments/environment';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +40,7 @@ import { RiskComponent } from './risk/risk.component';
     HttpModule,
     AppRoutingModule,
     AgmCoreModule.forRoot({
-      apiKey: "GOOGLE_API_KEY",
+      apiKey: environment.googleApiKey,
       libraries: ["places"]
     })
   ],

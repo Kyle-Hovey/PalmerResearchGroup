@@ -1,6 +1,6 @@
 <div id="bodytitle">Risk Assessment v1.0</div>
-<div class='container'>
-	<h2><u>About this tool</u></h2>
+	
+	<p class="bodytext"><u><strong>About this tool</strong></u></p>
 	<p>
 		This tool provides you access to the model that our research team has created. The model calculates a risk value for nearly every location in the state of Iowa. The value is calculated relative to other locations that are known to have palmer infestations. The model takes into account factors outside of a farmers control such as average highest temperature, soil quality, elevation, rainfall and wind as well as demographic information to compute a risk value. The final risk value represents how similar or dissimilar the location is to places known to be infested with palmer.
 	</p>
@@ -10,6 +10,5 @@
 	<p>
 		To use the webtool search for your location or pan by clicking and dragging on the map. Once you have found your location click on the map to get your risk.
 	</p>
-</div>
 
 <app-google-map (marked)="onMarked($event)" [palmer]="palmer"></app-google-map>

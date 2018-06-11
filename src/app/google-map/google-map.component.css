@@ -1,12 +1,16 @@
-    agm-map {
+agm-map {
       height: 500px;
     }
 
-    #search {
+#search {
 	width: 20%;
     padding: 5px 5px;
     border: solid thin black;
     background-color: white;
 	margin-bottom: 20px;
 	font-family:inherit;
+}
+
+#searchLabel {
+	
 }
