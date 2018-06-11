@@ -183,3 +183,15 @@ p {
 form u {
 	font-size: 20px;
 }
+
+.high {
+	color: red;
+}
+
+.mid {
+	color: yellow;
+}
+
+.low {
+	color: green;
+}

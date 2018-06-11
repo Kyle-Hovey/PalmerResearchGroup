@@ -25,7 +25,7 @@ export class GoogleMapComponent implements OnInit {
 
   public content: string;
 
-  public color: string;
+  public risktype: string;
 
   private _palmer: Palmer = {
             risk: "",
@@ -45,7 +45,13 @@ export class GoogleMapComponent implements OnInit {
     this._palmer = (palmer);
     var risk = this._palmer.risk;
     if (+risk > .8){
-      this.color = "red";
+      this.risktype = "high";
+    }
+    else if (+risk > .6 && +risk < .8){
+      this.risktype = 'mid';
+    }
+    else{
+    this.risktype = 'low';
     }
     console.log(this._palmer);
   }
@@ -65,8 +71,8 @@ export class GoogleMapComponent implements OnInit {
     this.latitude = 41.8780;
     this.longitude = -93.0977;
     this.mapTypeId = 'hybrid';
-    this.color = 'black';
-    
+    this.risktype = '';
+
     this.searchControl = new FormControl();
 
     this.setCurrentPosition();
