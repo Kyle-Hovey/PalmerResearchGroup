@@ -104,6 +104,14 @@ body {
 	text-align: justify;
 }
 
+#map {
+	width: 80%;
+	height: 600px;
+	margin: 1vw auto;
+	margin-top: 3vw;
+	margin-bottom: 20px;
+}
+
 @media screen and (min-width: 650px) {
 	#bodytitle {
 		width: 70%;
@@ -129,6 +137,10 @@ form {
 
 p {
 	text-indent: 2em;
+}
+
+.noindent{
+	text-indent: 0em;
 }
 
 #largetextbox {
