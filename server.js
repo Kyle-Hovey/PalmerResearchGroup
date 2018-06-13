@@ -6,16 +6,31 @@ var http = require("http");
 var ObjectID = mongodb.ObjectID;
 var nodeMailer = require('nodemailer');
 
+var multer = require('multer');
+
+
 var RISK_COLLECTION = "risk";
 
 var app = express();
-app.use(bodyParser.json());
-
+app.set('view engine', 'js');
+app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 var distDir = __dirname + "/dist/PalmerClient";
 app.use(express.static(distDir));
+
+app.use(express.static('uploads'));
+
+var uploadDir = './uploads/';
+var storage = multer.diskStorage({
+	destination: uploadDir,
+	filename: function(req, file, cb){
+		cb(null, file.originalname)
+	}
+});
+var upload = multer({storage: storage}).single('photo');
+
 
 var db;
 
@@ -71,7 +86,7 @@ app.get("/api/:lat-:lng", async function(req, res, next)
 	}
 });
 
-app.post('/send-email', function (req, res) {
+app.post('/api/sendmail', function (req, res) {
       let transporter = nodeMailer.createTransport({
           host: 'smtp.gmail.com',
           port: 465,
@@ -84,8 +99,8 @@ app.post('/send-email', function (req, res) {
       let mailOptions = {
           from: 'simpsonpalmerproject@gmail.com', // sender address
           to: 'simpsonpalmerproject@gmail.com', // list of receivers
-          subject: 'TEST', // Subject line
-          text: 'HERE IS THE BODY', // plain text body
+          subject: 'Palmer Project: New Contact Message', // Subject line
+          text: 'NAME: ' + req.body.name + '\n\nPHONE NUMBER: ' + req.body.phone + '\n\nEMAIL: ' + req.body.email + '\n\nMESSAGE: ' + req.body.message // plain text body
       };
 
       transporter.sendMail(mailOptions, (error, info) => {
@@ -96,7 +111,20 @@ app.post('/send-email', function (req, res) {
               res.render('index');
           });
       });
-	
+
+app.post('/api/blogpost', function(req, res, next) {
+	var path = '';
+	upload(req, res, function(err) {
+		if (err) {
+			console.log(err);
+			return res.status(422).send("a file upload error occured");
+		}
+
+		path = req.file.path;
+		return res.send("Upload complete for " + path);
+	})
+})
+
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'dist/PalmerClient/index.html'));
 });

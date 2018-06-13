@@ -10,14 +10,19 @@ import { AppRoutingModule } from "./app-routing.module";
 
 import { PalmerService } from './palmer.service';
 
+import { environment } from './../environments/environment';
+
 import { AppComponent } from './app.component';
 import { HomePageComponent } from './homePage/homePage.component';
 import { TeamComponent } from './team/team.component';
 import { PalmerComponent } from './palmer/palmer.component';
 import { GoogleMapComponent } from './google-map/google-map.component';
-import { DevelopmentComponent } from './development/development.component';
+import { BlogComponent } from './blog/blog.component';
 import { ContactComponent } from './contact/contact.component';
 import { RiskComponent } from './risk/risk.component';
+import { CreateComponent } from './create/create.component';
+
+
 
 @NgModule({
   declarations: [
@@ -26,9 +31,10 @@ import { RiskComponent } from './risk/risk.component';
     TeamComponent,
     PalmerComponent,
     GoogleMapComponent,
-    DevelopmentComponent,
+    BlogComponent,
     ContactComponent,
     RiskComponent,
+    CreateComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +44,7 @@ import { RiskComponent } from './risk/risk.component';
     HttpModule,
     AppRoutingModule,
     AgmCoreModule.forRoot({
-      apiKey: "AIzaSyDKr6lrHj-ALXJoW7MI1g-Fm9CjSUqWEOY",
+      apiKey: environment.googleApiKey,
       libraries: ["places"]
     })
   ],

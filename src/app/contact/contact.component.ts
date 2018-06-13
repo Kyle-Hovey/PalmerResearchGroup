@@ -1,10 +1,10 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Rx';
-import { HttpClient, HttpErrorResponse} from '@angular/common/http';
-import { Http, Response } from '@angular/http'; 
+import { Component, OnInit, ElementRef, Input } from '@angular/core';
+import { Http, Response } from '@angular/http';
 
-var _this = this;
+import "rxjs/add/operator/do";
+import "rxjs/add/operator/map";
+
+import { Email } from '../email';
 
 @Component({
   selector: 'app-contact',
@@ -12,14 +12,26 @@ var _this = this;
   styleUrls: ['./contact.component.css'],
 })
 
-export class ContactComponent{
-	private riskUrl = '/api/';
+export class ContactComponent implements OnInit {
 	
-    constructor(private http: HttpClient) { }
+	private mailUrl = '/api/sendmail';
 	
-	data = 'none';
+    constructor(private http: Http) { }
+	
+	ngOnInit() {
+	}
+	
+	model = new Email("","","","")
+	
+	submitted = false;
 	
 	sendEmail() {
-		this.http.post(this.riskUrl + 'send-email', this.data);
+		let formData = new FormData();
+		this.http.post(this.mailUrl, this.model).map((res:Response) => res).subscribe(
+  			(success) => {
+  				alert(success);
+  			},
+  			(error) => alert(error))
+		this.submitted = true;
 	}
 }

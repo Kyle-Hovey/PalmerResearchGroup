@@ -25,12 +25,15 @@ export class GoogleMapComponent implements OnInit {
 
   public content: string;
 
+  public risktype: string;
+
   private _palmer: Palmer = {
             risk: "",
             latitude: "",
             longitude: "",
             xCoord: "",
-            yCoord: ""
+            yCoord: "",
+            percentile: ""
           };
 
   public markers = [];
@@ -41,6 +44,19 @@ export class GoogleMapComponent implements OnInit {
   @Input()
   set palmer(palmer: Palmer) {
     this._palmer = (palmer);
+    var percentile = this._palmer.percentile;
+    if (+percentile >= 66){
+      this.risktype = "high";
+    }
+    else if (+percentile >= 33 && +percentile < 66){
+      this.risktype = 'mid';
+    }
+    else if (+percentile < 33) {
+      this.risktype = 'low';
+    }
+    else {
+      this.risktype = '';
+    }
     console.log(this._palmer);
   }
 
@@ -59,6 +75,7 @@ export class GoogleMapComponent implements OnInit {
     this.latitude = 41.8780;
     this.longitude = -93.0977;
     this.mapTypeId = 'hybrid';
+    this.risktype = '';
 
     this.searchControl = new FormControl();
 

@@ -10,7 +10,7 @@
         <agm-marker *ngFor="let m of markers; let i = index" [latitude]="m.latitude" [longitude]="m.longitude" [label]="m.label" [markerDraggable]="m.draggable" (dragEnd)="markerDragEnd(m, $event)"> 
         
 		    <agm-info-window [isOpen]="true">
-		      <strong>Risk: {{_palmer.risk}}</strong>
+		      <p class="noindent {{risktype}}"><strong>Percentile: {{_palmer.percentile}} % </strong></p>
 		    </agm-info-window>
     	
     	</agm-marker>
