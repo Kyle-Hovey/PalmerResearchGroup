@@ -1,8 +1,18 @@
-    var scotchApp = angular.module('scotchApp', []);
+'use strict';
 
-    // create the controller and inject Angular's $scope
-    scotchApp.controller('mainController', function($scope) {
-
-        // create a message to display in our view
-        $scope.message = 'Everyone come and see how good I look!';
+angular.module('sendmailApp', [])
+.controller('MailController', function ($scope,$http) {
+  $scope.loading = false;
+  $scope.send = function (mail){
+    $scope.loading = true;
+    $http.post('/sendmail', {
+      from: 'CodeNx <admin@angularcode.com>',
+      to: 'support@codenx.com',
+      subject: 'Message from AngularCode',
+      text: mail.message
+    }).then(res=>{
+        $scope.loading = false;
+        $scope.serverMessage = 'Email sent successfully';
     });
+  }
+})

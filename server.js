@@ -4,10 +4,14 @@ var path = require('path');
 var mongodb = require("mongodb");
 var http = require("http");
 var ObjectID = mongodb.ObjectID;
+var nodeMailer = require('nodemailer');
 
 var RISK_COLLECTION = "risk";
 
 var app = express();
+app.use(bodyParser.json());
+
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 var distDir = __dirname + "/dist/PalmerClient";
@@ -67,6 +71,32 @@ app.get("/api/:lat-:lng", async function(req, res, next)
 	}
 });
 
+app.post('/send-email', function (req, res) {
+      let transporter = nodeMailer.createTransport({
+          host: 'smtp.gmail.com',
+          port: 465,
+          secure: true,
+          auth: {
+              user: 'simpsonpalmerproject@gmail.com',
+              pass: 'Palmer99'
+          }
+      });
+      let mailOptions = {
+          from: 'simpsonpalmerproject@gmail.com', // sender address
+          to: 'simpsonpalmerproject@gmail.com', // list of receivers
+          subject: 'TEST', // Subject line
+          text: 'HERE IS THE BODY', // plain text body
+      };
+
+      transporter.sendMail(mailOptions, (error, info) => {
+          if (error) {
+              return console.log(error);
+          }
+          console.log('Message %s sent: %s', info.messageId, info.response);
+              res.render('index');
+          });
+      });
+	
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'dist/PalmerClient/index.html'));
 });
