@@ -5,13 +5,29 @@ var mongodb = require("mongodb");
 var http = require("http");
 var ObjectID = mongodb.ObjectID;
 
+var multer = require('multer');
+
+
 var RISK_COLLECTION = "risk";
 
 var app = express();
 app.use(bodyParser.json());
 
+
 var distDir = __dirname + "/dist/PalmerClient";
 app.use(express.static(distDir));
+
+app.use(express.static('uploads'));
+
+var uploadDir = './uploads/';
+var storage = multer.diskStorage({
+	destination: uploadDir,
+	filename: function(req, file, cb){
+		cb(null, file.originalname)
+	}
+});
+var upload = multer({storage: storage}).single('photo');
+
 
 var db;
 
@@ -66,6 +82,19 @@ app.get("/api/:lat-:lng", async function(req, res, next)
 		return res.status(400).json({status: 400, message: e.message});
 	}
 });
+
+app.post('/api/blogpost', function(req, res, next) {
+	var path = '';
+	upload(req, res, function(err) {
+		if (err) {
+			console.log(err);
+			return res.status(422).send("a file upload error occured");
+		}
+
+		path = req.file.path;
+		return res.send("Upload complete for " + path);
+	})
+})
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'dist/PalmerClient/index.html'));
