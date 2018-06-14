@@ -7,6 +7,7 @@ var ObjectID = mongodb.ObjectID;
 
 var multer = require('multer');
 
+var BLOG_COLLECTION = "posts";
 
 var RISK_COLLECTION = "risk";
 
@@ -83,7 +84,7 @@ app.get("/api/:lat-:lng", async function(req, res, next)
 	}
 });
 
-app.post('/api/blogpost', function(req, res, next) {
+app.post('/api/upload', function(req, res, next) {
 	var path = '';
 	upload(req, res, function(err) {
 		if (err) {
@@ -93,8 +94,27 @@ app.post('/api/blogpost', function(req, res, next) {
 
 		path = req.file.path;
 		return res.send("Upload complete for " + path);
-	})
-})
+	});
+});
+
+app.post('/api/blogpost', function(req, res, next) {
+	var newPost = req.body;
+	db.collection(BLOG_COLLECTION).insertOne(newPost, function(err, doc) {
+		if (err) {
+			handleError(res, err.message, "Failed to create new contact.");
+		} else {
+			res.status(201).json(doc.ops[0]);
+		}
+	});
+});
+
+app.get('/api/blog/:num', function(req, res, next) {
+	db.collection(BLOG_COLLECTION).find({}).toArray(function(error, documents) {
+		if (error) throw error;
+
+		res.send(documents);
+	});
+});
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'dist/PalmerClient/index.html'));

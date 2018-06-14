@@ -15,6 +15,7 @@ import { Post } from '../post';
 export class CreateComponent implements OnInit {
 
   private blogUrl = '/api/blogpost';
+  private uploadUrl = '/api/upload';
   
   constructor(private http: Http, private el: ElementRef) { }
 
@@ -37,13 +38,21 @@ export class CreateComponent implements OnInit {
   	if (fileCount > 0) {
 
   		formData.append('photo', inputE1.files.item(0));
+
   		this.model.photo = inputE1.files.item(0).name;
+  		
   		console.log(this.model);
-  		this.http.post(this.blogUrl, formData).map((res:Response) => res).subscribe(
+  		
+  		this.http.post(this.uploadUrl, formData).map((res:Response) => res).subscribe(
   			(success) => {
   				alert(success);
   			},
-  			(error) => alert(error))
+  			(error) => alert(error));
+  		this.http.post(this.blogUrl, this.model).map((res:Response)=> res).subscribe(
+  			(success) => {
+  				alert(success);
+  			},
+  			(error) => alert(error));
   	}
 
   	this.submitted = true;

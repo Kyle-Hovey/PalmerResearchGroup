@@ -30,10 +30,6 @@ export class PalmerComponent implements OnInit {
   ngOnInit() {
   }
 
-  calculateRisk(lat, lon) {
-    this.getRiskFromLatLon(lat, lon);
-  }
-
   onMarked(latLon){
     var latLonArray = latLon.split(" ");
     console.log(latLonArray);
