@@ -1,13 +1,24 @@
-<div id="bodytitle">Contact Us</div>
+<div *ngIf="!submitted">
+	
+	<div id="bodytitle">Contact Us</div>
+	
+	<form (ngSubmit)="sendEmail()" #postForm="ngForm">
+		<u>Name: </u><br>
+		<input type="text" name="name" id="contactinput" required [(ngModel)]="model.name"><br>
+		<u>Email: </u><br>
+		<input type="email" name="email" id="contactinput" required [(ngModel)]="model.email"><br>
+		<u>Phone Number: </u><br>
+		<input type="email" name="phone" id="contactinput" required [(ngModel)]="model.phone"><br>
+		<u>Comment: </u><br>
+		<input type="text" name="message" id="contactinput" required [(ngModel)]="model.message"><br>
+		<button type="submit">Submit</button>
+	</form>
+</div>
 
-<form>
-<u>Name</u><br>
-<input type="text" name="Name" id="contactinput"><br>
-<u>Phone Number</u><br>
-<input type="text" name="Phone" id="contactinput"><br>
-<u>Email</u><br>
-<input type="text" name="Phone" id="contactinput"><br>
-<u>Message</u><br>
-<textarea name="Message" id="largetextbox"></textarea><br>
-<input type="submit" value="Submit" id="contactsubmit">
-</form>
+<div *ngIf="submitted">
+	<div id="bodytitle">You have successfully submitted this contact information.</div>
+	<p class="noindent">Name: {{model.name}}</p>
+	<p class="noindent">Email: {{model.email}}</p>
+	<p class="noindent">Phone: {{model.phone}}</p>
+	<p class="noindent">Message: {{model.message}}</p>
+</div>

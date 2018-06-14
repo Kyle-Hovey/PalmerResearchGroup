@@ -4,7 +4,6 @@ import { Http, Response } from '@angular/http';
 import "rxjs/add/operator/do";
 import "rxjs/add/operator/map";
 
-
 import { Post } from '../post';
 
 @Component({
@@ -12,6 +11,7 @@ import { Post } from '../post';
   templateUrl: './create.component.html',
   styleUrls: ['./create.component.css']
 })
+
 export class CreateComponent implements OnInit {
 
   private blogUrl = '/api/blogpost';

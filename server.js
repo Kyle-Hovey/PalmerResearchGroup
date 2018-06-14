@@ -4,6 +4,7 @@ var path = require('path');
 var mongodb = require("mongodb");
 var http = require("http");
 var ObjectID = mongodb.ObjectID;
+var nodeMailer = require('nodemailer');
 
 var multer = require('multer');
 
@@ -12,8 +13,10 @@ var BLOG_COLLECTION = "posts";
 var RISK_COLLECTION = "risk";
 
 var app = express();
+app.set('view engine', 'js');
+app.use(express.static('public'));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-
 
 var distDir = __dirname + "/dist/PalmerClient";
 app.use(express.static(distDir));
@@ -83,6 +86,32 @@ app.get("/api/:lat-:lng", async function(req, res, next)
 		return res.status(400).json({status: 400, message: e.message});
 	}
 });
+
+app.post('/api/sendmail', function (req, res) {
+      let transporter = nodeMailer.createTransport({
+          host: 'smtp.gmail.com',
+          port: 465,
+          secure: true,
+          auth: {
+              user: 'simpsonpalmerproject@gmail.com',
+              pass: 'Palmer99'
+          }
+      });
+      let mailOptions = {
+          from: 'simpsonpalmerproject@gmail.com', // sender address
+          to: 'simpsonpalmerproject@gmail.com', // list of receivers
+          subject: 'Palmer Project: New Contact Message', // Subject line
+          text: 'NAME: ' + req.body.name + '\n\nPHONE NUMBER: ' + req.body.phone + '\n\nEMAIL: ' + req.body.email + '\n\nMESSAGE: ' + req.body.message // plain text body
+      };
+
+      transporter.sendMail(mailOptions, (error, info) => {
+          if (error) {
+              return console.log(error);
+          }
+          console.log('Message %s sent: %s', info.messageId, info.response);
+              res.render('index');
+          });
+      });
 
 app.post('/api/upload', function(req, res, next) {
 	var path = '';
