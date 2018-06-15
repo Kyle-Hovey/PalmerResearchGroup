@@ -11,6 +11,7 @@ import 'rxjs/add/operator/map';
 })
 export class BlogService {
   private blogUrl = '/api/blog/';
+  private postUrl = '/api/post/';
 
   constructor(private http: HttpClient) { }
 
@@ -18,6 +19,10 @@ export class BlogService {
 	return this.http.get(this.blogUrl + num);
 	}
 
+  getPost(id) {
+  	return this.http.get(this.postUrl + id);
+  }
+  
   private handleError (error: any): Promise<any> {
     console.error('An error occured', error);
     return Promise.reject(error.message || error);

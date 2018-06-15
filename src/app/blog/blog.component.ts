@@ -14,8 +14,12 @@ export class BlogComponent implements OnInit{
 
     noposts = false;
 
+    selectedPost: Post;
+
+    cursor = 0;
+
     ngOnInit() {
-    	var allPosts = this.getBlogPosts(1);
+    	this.getBlogPosts(this.cursor);
     }
 
     getBlogPosts(num) {

@@ -3,7 +3,7 @@ var bodyParser = require("body-parser");
 var path = require('path');
 var mongodb = require("mongodb");
 var http = require("http");
-var ObjectID = mongodb.ObjectID;
+var ObjectId = mongodb.ObjectId;
 var nodeMailer = require('nodemailer');
 
 var multer = require('multer');
@@ -138,10 +138,21 @@ app.post('/api/blogpost', function(req, res, next) {
 });
 
 app.get('/api/blog/:num', function(req, res, next) {
-	db.collection(BLOG_COLLECTION).find({}).toArray(function(error, documents) {
+	db.collection(BLOG_COLLECTION).find({}).sort({_id:-1}).skip(parseInt(req.params.num)).limit(10).toArray(function(error, documents) {
 		if (error) throw error;
-
+		documents.forEach(function(document) {
+			document.text = document.text.replace(/\n/g, "<br />");
+		})
 		res.send(documents);
+	});
+});
+
+app.get('/api/post/:id', async function(req,res,next) {
+	var id = new ObjectId(req.params.id);
+	await db.collection(BLOG_COLLECTION).findOne({_id: id}, function(error, document) {
+		if (error) throw error;
+		document.text = document.text.replace(/\n/g, "<br />");
+		return res.json(document);
 	});
 });
 

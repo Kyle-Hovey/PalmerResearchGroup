@@ -21,6 +21,7 @@ import { BlogComponent } from './blog/blog.component';
 import { ContactComponent } from './contact/contact.component';
 import { RiskComponent } from './risk/risk.component';
 import { CreateComponent } from './create/create.component';
+import { PostComponent } from './post/post.component';
 
 
 
@@ -35,6 +36,7 @@ import { CreateComponent } from './create/create.component';
     ContactComponent,
     RiskComponent,
     CreateComponent,
+    PostComponent,
   ],
   imports: [
     BrowserModule,
