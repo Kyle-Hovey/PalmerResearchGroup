@@ -8,6 +8,9 @@ import { BlogComponent } from './blog/blog.component';
 import { ContactComponent } from './contact/contact.component';
 import { CreateComponent } from './create/create.component';
 import { PostComponent } from  './post/post.component';
+import { LoginComponent } from './login/login.component';
+
+import { AuthGuardService } from './auth-guard.service';
 
 const routes: Routes = [
     { path: '', component: HomePageComponent },
@@ -15,13 +18,15 @@ const routes: Routes = [
 	{ path: 'palmer', component: PalmerComponent },
 	{ path: 'blog', component: BlogComponent },
 	{ path: 'contact', component: ContactComponent },
-	{ path: 'create', component: CreateComponent },
+	{ path: 'create', component: CreateComponent, canActivate: [AuthGuardService] },
 	{ path: 'post/:id', component: PostComponent },
+	{ path: 'login', component: LoginComponent },
 ];
 
 @NgModule({
 	imports: [ RouterModule.forRoot(routes) ],
-	exports: [ RouterModule ]
+	exports: [ RouterModule ],
+	providers: [ AuthGuardService ]
 })
 
 export class AppRoutingModule { }

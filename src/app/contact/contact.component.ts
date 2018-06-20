@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef, Input } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 import "rxjs/add/operator/do";
 import "rxjs/add/operator/map";
@@ -16,7 +16,7 @@ export class ContactComponent implements OnInit {
 	
 	private mailUrl = '/api/sendmail';
 	
-    constructor(private http: Http) { }
+    constructor(private http: HttpClient) { }
 	
 	ngOnInit() {
 	}

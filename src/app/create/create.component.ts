@@ -1,10 +1,12 @@
 import { Component, OnInit, ElementRef, Input } from '@angular/core';
-import { Http, Response } from '@angular/http';
-
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 import "rxjs/add/operator/do";
 import "rxjs/add/operator/map";
+import { AuthenticationService, UserDetails } from '../authentication.service';
 
 import { Post } from '../post';
+
 
 @Component({
   selector: 'app-create',
@@ -17,10 +19,25 @@ export class CreateComponent implements OnInit {
   private blogUrl = '/api/blogpost';
   private uploadUrl = '/api/upload';
   
-  constructor(private http: Http, private el: ElementRef) { }
+  posts: Post[];
+
+  details: UserDetails;
+
+  constructor(private http: HttpClient, private el: ElementRef, private router: Router, private auth: AuthenticationService) { }
 
   ngOnInit() {
-  }
+    this.auth.create()
+    .subscribe(user => {
+      this.details = user;
+      }, err => { console.error(err);},      
+    () => console.log('yay'));
+  };
+
+  logout() {
+    console.log('logout function');
+    this.auth.logout();
+    this.router.navigate(['login']);
+  };
 
   model = new Post("","","");
 

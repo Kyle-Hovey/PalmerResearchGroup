@@ -2,10 +2,10 @@
 <div class='container'>	
 	<p class="noindent"><u><strong>About this tool</strong></u></p>
 	<p>
-		This tool provides you access to the model that our research team has created. The model calculates a risk value for nearly every location in the state of Iowa. The value is calculated relative to other locations that are known to have palmer infestations. The model takes into account factors outside of a farmers control such as average highest temperature, soil quality, elevation, rainfall and wind as well as demographic information to compute a risk value. The final risk value represents how similar or dissimilar the location is to places known to be infested with palmer.
+		This tool provides access to the model that our research team has created. The model calculates a risk value for nearly every location in the state of Iowa. Values are calculated relative to other locations that are known to have palmer infestations. Our model also takes into account factors outside of a farmer's control such as average highest temperature, soil quality, elevation, rainfall and wind. We have also included demographic information, some of which is under the control of individual farmers, to compute a risk value. The final risk value represents how similar or dissimilar the location is to places known to be infested with palmer.
 	</p>
 	<p>
-		We created the webtool below to share this information with you. It will provide you with a percentile value. For example: <strong>Risk: 90th percentile</strong> means that the location that you have clicked is in the top 10% of riskiest locations in Iowa. More detail about what this value represents can be found below the webtool. 
+		We created the webtool below to share this information. It will provide a percentile value. For example: <strong>Risk: 90th percentile</strong> means that the location that you have clicked is in the top 10% of riskiest locations in Iowa. More detail about what this value represents can be found below the webtool. 
 	</p>
 	<p>
 		To use the webtool search for your location or pan by clicking and dragging on the map. Once you have found your location click on the map to get your risk.
@@ -14,9 +14,9 @@
 	<app-google-map (marked)="onMarked($event)" [palmer]="palmer"></app-google-map>
 </div>
  
-<p>The table below provides more details about what factors lead to a high or low risk calculation. The results of our model <strong>are not</strong> an indication that Palmer has been sighted, but a high risk value does mean that the conditions are right for Palmer Amaranth to grow in your area. The entire state of Iowa is threatened by Palmer Ameranth and other dangerous weeds, please follow the link below for educational information. </p>
+<p>The table below provides more details about what factors lead to a high or low risk calculation. The results of our model <strong>are not</strong> an indication that Palmer has been sighted, but a high risk value does mean that the conditions are right for Palmer amaranth to grow in your area. The entire state of Iowa is threatened by Palmer ameranth and other dangerous weeds, please follow the link below for educational information. </p>
 
-<p class="noindent"><a routerLink="/education"><u><strong>How to defend against Palmer Amaranth and other dangerous weeds >>></strong></u></a></p>
+<p class="noindent"><a routerLink="/education"><u><strong>How to defend against Palmer amaranth and other dangerous weeds</strong></u></a></p>
 
 <table>
 	<tr>
