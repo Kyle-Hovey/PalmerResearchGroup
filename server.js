@@ -23,6 +23,7 @@ var auth = ExpressJwt({
 
 //Required for File Upload
 var multer = require('multer');
+var fs = require('fs');
 
 //DB Collection Identities
 var BLOG_COLLECTION = "posts";
@@ -182,17 +183,53 @@ app.post('/api/upload', function(req, res, next) {
 	});
 });
 
+app.post('/api/delete/:path/:id', function(req, res, next) {
+	var id = ObjectId(req.params.id);
+	fs.unlink("./uploads/" + req.params.path, function() {
+		db.collection(BLOG_COLLECTION).update({_id: id}, {$unset: {photo: ""}}, function(err, doc){
+			if (err){
+				handleError(res, err.message, "Failed to delete file path.");
+			} else {
+				res.status(201).json(doc);
+			}
+		});
+	});
+});
+
 //Create a new post and add it to the database
 app.post('/api/blogpost', function(req, res, next) {
 	var newPost = req.body;
 	db.collection(BLOG_COLLECTION).insertOne(newPost, function(err, doc) {
 		if (err) {
-			handleError(res, err.message, "Failed to create new contact.");
+			handleError(res, err.message, "Failed to create new post.");
 		} else {
 			res.status(201).json(doc.ops[0]);
 		}
 	});
 });
+
+app.post('/api/editpost', function(req, res, next) {
+	var editedPost = req.body;
+	var id = ObjectId(editedPost._id);
+	db.collection(BLOG_COLLECTION).update({_id: id}, {$set: {title: editedPost.title, author: editedPost.author, text: editedPost.text, photo: editedPost.photo	}}, function(err, doc) {
+		if (err) {
+			handleError(res, err.message, "Failed to update post.");
+		} else {
+			res.status(201).json(doc);
+		}
+	})
+})
+
+app.delete('/api/deletePost/:id', function(req, res, next) {
+	var id = ObjectId(req.params.id);
+	db.collection(BLOG_COLLECTION).deleteOne({_id: id}, function(err) {
+		if (err) {
+			handleError(res, err.message, "Failed to delete post.");
+		} else {
+			res.status(201).send('Post Deleted');
+		}
+	});
+})
 
 //Get an increment of 10 blogposts ex: /api/blog/10 gets blog post 11-20, ordered new to old
 app.get('/api/blog/:num', function(req, res, next) {
@@ -214,6 +251,14 @@ app.get('/api/post/:id', async function(req,res,next) {
 		return res.json(document);
 	});
 });
+
+app.get('/api/edit/:id', async function(req, res, next) {
+	var id = new ObjectId(req.params.id);
+	await db.collection(BLOG_COLLECTION).findOne({_id: id}, function(error, document) {
+		if (error) throw error;
+		return res.json(document);
+	});
+})
 
 //Login to the app, returns a jwt token
 app.post('/api/login', function(req, res) {
@@ -242,7 +287,7 @@ app.post('/api/login', function(req, res) {
 	})(req, res);
 });
 
-app.get('/create', auth, async function(req, res, next) {
+app.get('/api/create', auth, async function(req, res, next) {
 	console.log(req.payload);
 	if (!req.payload || !req.payload._id) {
 		res.status(401).json({
@@ -272,6 +317,6 @@ app.use(function (err, req, res, next) {
 
 //General error handler
 app.use(function(err, res, res, next) {
-  console.log("ERROR: " + res);
+  console.log("ERROR: " + err);
   res.status(500).json({"error": err.message});
 });

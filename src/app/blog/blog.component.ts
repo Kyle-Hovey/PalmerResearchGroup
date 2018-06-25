@@ -12,7 +12,7 @@ export class BlogComponent implements OnInit{
 
     posts: Post[];
 
-    noposts = false;
+    noPosts = false;
 
     selectedPost: Post;
 
@@ -25,15 +25,26 @@ export class BlogComponent implements OnInit{
     getBlogPosts(num) {
     	this.blogService.getBlogPosts(num)
     	.subscribe((data: Post[]) => {
-    		if(!data){
+    		if(!data || data.length == 0){
     			console.log("no data");
-    			this.noposts = true;
+    			this.noPosts = true;
     		}
     		else{
     			console.log("data");
     			this.posts = data;
+                this.noPosts = false;
     			console.log(this.posts);
     		}
     	});
+    }
+
+    getNewer() {
+      this.cursor -= 10;
+      this.getBlogPosts(this.cursor);
+    }
+
+    getOlder() {
+      this.cursor += 10;
+      this.getBlogPosts(this.cursor);
     }
 }

@@ -4,12 +4,22 @@
 
 	<p>Stay updated on what our team is working on by checking out our blog!</p><br /><br />
 
-	<div *ngFor="let post of posts" routerLink="/post/{{post._id}}" class="post">
-		<img src="{{post.photo}}" class="postImage">
-		<div class="postContent">
-			<div class="postTitle">{{post.title}}</div>
-			<div class="postAuthor">Written by {{post.author}}</div>
-			<div class="postText" [innerHTML]="post.text"></div>
-		</div>	
+	<button *ngIf="cursor > 0" (click)="getNewer()">Newer Posts</button><button *ngIf="!noPosts" (click)="getOlder()">Older Posts</button>
+
+
+	<div *ngIf="!noPosts">
+		<div *ngFor="let post of posts" routerLink="/post/{{post._id}}" class="post">
+			<img *ngIf="post.photo" src="{{post.photo}}" class="postImage">
+			<div *ngIf="!post.photo" class="postImage" style="color:green;"></div>
+			<div class="postContent">
+				<div class="postTitle">{{post.title}}</div>
+				<div class="postAuthor">Written by {{post.author}}</div>
+				<div class="postText" [innerHTML]="post.text"></div>
+			</div>	
+		</div>
+	</div>
+
+	<div *ngIf="noPosts">
+		<p class="noindent">No Posts Available.</p>
 	</div>
 </div>

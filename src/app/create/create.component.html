@@ -1,20 +1,43 @@
 <button (click)="logout()">Logout</button>
 
-<div *ngIf="!submitted">
+<div *ngIf="!submitted && !edited">
+	<div *ngIf="NewPost">
+		<div id="bodytitle">Write a new blog post</div>
 
-	<div id="bodytitle">Write a new blog post</div>
+		<form (ngSubmit)="submitNew()" #postForm="ngForm" class="formBody">
+			<u>Title of Article: </u><br>
+			<input type="text" name="title" placeholder="Title of post" id="contactinput" required [(ngModel)]="model.title"><br>
+			<u>Author: </u><br>
+			<input type="text" name="author" placeholder="Author of post" id="contactinput" required [(ngModel)]="model.author"><br>
+			<u>Content of article: </u><br>
+			<textarea name="text" id="largetextbox" required [(ngModel)]="model.text"></textarea><br>
+			<u>Upload photograph: </u><br><br>
+			<input id="photo" type="file" name="photo" required><br><br>
+			<button type="submit">Post Article</button>
+		</form>
+	</div>
 
-	<form (ngSubmit)="onSubmit()" #postForm="ngForm">
-		<u>Title of Article: </u><br>
-		<input type="text" name="title" placeholder="Title of post" id="contactinput" required [(ngModel)]="model.title"><br>
-		<u>Author: </u><br>
-		<input type="text" name="author" placeholder="Author of post" id="contactinput" required [(ngModel)]="model.author"><br>
-		<u>Content of article: </u><br>
-		<textarea name="text" id="largetextbox" required [(ngModel)]="model.text"></textarea><br>
-		<u>Upload photograph: </u><br><br>
-		<input id="photo" type="file" name="photo" required><br><br>
-		<button type="submit">Post Article</button>
-	</form>
+	<div *ngIf="EditingPost">
+		<div id="bodytitle">Edit blog post</div>
+
+		<form (ngSubmit)="submitEdit()" #postForm="ngForm" class="formBody">
+			<p class="noindent">Originally Written: {{model.date | date: format : short}}</p>
+			<u>Title of Article: </u><br>
+			<input type="text" name="title" placeholder="Title of post" id="contactinput" required [(ngModel)]="model.title"><br>
+			<u>Author: </u><br>
+			<input type="text" name="author" placeholder="Author of post" id="contactinput" required [(ngModel)]="model.author"><br>
+			<u>Content of article: </u><br>
+			<textarea name="text" id="largetextbox" required [(ngModel)]="model.text"></textarea><br>
+			<u>Upload photograph: </u><br><br>
+			<div *ngIf="model.photo">			
+				<img src="{{model.photo}}" class="currentPhoto">
+				<button type="button" (click)="deleteCurrentPhoto(model.photo, model._id)">Delete Current Photo</button>
+			</div>
+			<input *ngIf="!model.photo" id="photo" type="file" name="photo" required><br><br>
+			<button type="submit">Update Article</button>
+		</form>
+	</div>
+
 </div>
 
 <div *ngIf="submitted">
@@ -25,6 +48,22 @@
 	<img src="{{model.photo}}">
 </div>
 
+<div *ngIf="edited">
+	<p>Post Edited!</p>
+</div>
+
 <div>
 	<p>{{details?.username}}</p>
 </div>
+
+<div *ngIf="!noPosts">
+	<div *ngFor="let post of posts" class="post">
+		<div class="postContent">
+			<div class="postTitle"><button (click)="startEdit(post._id)">Edit</button><button (click)="deletePost(post._id)">Delete</button>{{post.title}} </div>
+		</div>	
+	</div>
+</div>
+
+<p *ngIf="noPosts">No posts to show.</p>
+
+<button *ngIf="cursor > 0" (click)="getPrevious()">Get previous 10 posts </button><button *ngIf="!noPosts" (click)="getNext()">Get next 10 posts</button>
