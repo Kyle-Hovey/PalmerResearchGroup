@@ -2,8 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // <-- NgModel lives here
 import { AgmCoreModule } from '@agm/core';
-import { HttpModule } from '@angular/http';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from "@angular/router";
 
 import { AppRoutingModule } from "./app-routing.module";
@@ -21,6 +20,11 @@ import { BlogComponent } from './blog/blog.component';
 import { ContactComponent } from './contact/contact.component';
 import { RiskComponent } from './risk/risk.component';
 import { CreateComponent } from './create/create.component';
+import { PostComponent } from './post/post.component';
+import { LoginComponent } from './login/login.component';
+
+import { ErrorHandler } from './error-handler';
+import { ServerErrorsInterceptor } from './server-errors.interceptor';
 
 
 
@@ -35,22 +39,28 @@ import { CreateComponent } from './create/create.component';
     ContactComponent,
     RiskComponent,
     CreateComponent,
+    PostComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    HttpModule,
     AppRoutingModule,
     AgmCoreModule.forRoot({
       apiKey: environment.googleApiKey,
       libraries: ["places"]
     })
   ],
+  bootstrap: [AppComponent],
   providers: [
-    PalmerService
-  ],
-  bootstrap: [AppComponent]
+    ErrorHandler,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ServerErrorsInterceptor,
+      multi: true,
+    },
+  ]
 })
 export class AppModule { }

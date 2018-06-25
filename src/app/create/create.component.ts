@@ -1,10 +1,12 @@
 import { Component, OnInit, ElementRef, Input } from '@angular/core';
-import { Http, Response } from '@angular/http';
-
+import { Router } from '@angular/router';
 import "rxjs/add/operator/do";
 import "rxjs/add/operator/map";
+import { AuthenticationService, UserDetails } from '../authentication.service';
+import { BlogService } from '../blog.service';
 
 import { Post } from '../post';
+
 
 @Component({
   selector: 'app-create',
@@ -14,18 +16,47 @@ import { Post } from '../post';
 
 export class CreateComponent implements OnInit {
 
-  private blogUrl = '/api/blogpost';
+  private editUrl = '/api/editpost';
   
-  constructor(private http: Http, private el: ElementRef) { }
+  NewPost = true;
 
-  ngOnInit() {
-  }
+  EditingPost = false;
 
-  model = new Post("","","");
+  posts: Post[];
+
+  noPosts = false;
+
+  details: UserDetails;
+
+  cursor = 0;
+
+
+  model = new Post("","","",null);
 
   submitted = false;
+  
+  edited = false;
 
-  onSubmit() {
+  constructor(private el: ElementRef, private router: Router, private auth: AuthenticationService, private blogService: BlogService) { }
+
+  ngOnInit() {
+    this.auth.create()
+    .subscribe((user) => {
+      this.details = user;
+      }, (err) => { console.error(err);},      
+    () => console.log('yay'));
+
+    this.getBlogPosts(this.cursor);
+  };
+
+  logout() {
+    console.log('logout function');
+    this.auth.logout();
+    this.router.navigate(['login']);
+  };
+
+  submitNew() {
+    this.model.date = new Date();
   	let inputE1: HTMLInputElement = this.el.nativeElement.querySelector('#photo');
 
   	console.log(inputE1);
@@ -37,16 +68,108 @@ export class CreateComponent implements OnInit {
   	if (fileCount > 0) {
 
   		formData.append('photo', inputE1.files.item(0));
+
   		this.model.photo = inputE1.files.item(0).name;
+  		
   		console.log(this.model);
-  		this.http.post(this.blogUrl, formData).map((res:Response) => res).subscribe(
+  		
+  		this.blogService.uploadPhoto(formData).map((res:Response) => res).subscribe(
   			(success) => {
   				alert(success);
   			},
-  			(error) => alert(error))
+  			(error) => alert(error));
+  		this.blogService.createPost(this.model).map((res:Response)=> res).subscribe(
+  			(success) => {
+  				alert(success);
+  			},
+  			(error) => alert(error));
   	}
 
   	this.submitted = true;
   }
 
+  submitEdit() {
+    this.model.editedDate = new Date();
+    console.log("editing: " + this.model);
+    if (!this.model.photo) {
+      let inputE1: HTMLInputElement = this.el.nativeElement.querySelector('#photo');
+
+      let fileCount: number = inputE1.files.length;
+
+      let formData = new FormData();
+    
+      if (fileCount > 0) {
+
+        formData.append('photo', inputE1.files.item(0));
+
+        this.model.photo = inputE1.files.item(0).name;
+      
+        console.log(this.model);
+      
+        this.blogService.uploadPhoto(formData).map((res:Response) => res).subscribe();
+      }
+    }
+
+    this.blogService.editPost(this.model).map((res:Response)=> res).subscribe();
+    
+
+    this.edited = true;
+
+  }
+
+  getBlogPosts(num) {
+      this.blogService.getBlogPosts(num)
+      .subscribe((data: Post[]) => {
+        if(!data || data.length == 0){
+          console.log("no data");
+          this.noPosts = true;
+        }
+        else{
+          console.log(data);
+          this.posts = data;
+          this.noPosts = false;
+          console.log(this.posts);
+        }
+      });
+    }
+
+    getPrevious() {
+      this.cursor -= 10;
+      this.getBlogPosts(this.cursor);
+    }
+
+    getNext() {
+      this.cursor += 10;
+      this.getBlogPosts(this.cursor);
+    }
+
+    startEdit(str) {
+      console.log('Editing Post:' + str);
+      this.NewPost = false;
+      this.EditingPost = true;
+      
+      this.blogService.getPostForEditing(str)
+      .subscribe((data : Post) => {
+      this.model = data;
+      console.log(this.model);
+      });
+    }
+
+    deletePost(id) {
+      if (confirm('This will delete the post for good. Are you sure you want to do this?')) {
+        this.blogService.deletePost(id).subscribe();
+        this.getBlogPosts(this.cursor);
+        this.model = new Post("","","",null)
+      }
+    }
+
+    deleteCurrentPhoto(photoPath, postId) {
+      this.blogService.deletePhoto(photoPath, postId, this.model).subscribe();
+      
+      this.blogService.getPostForEditing(postId)
+      .subscribe((data : Post) => {
+      this.model = data;
+      console.log(this.model);
+      });
+    }
 }
