@@ -1,17 +1,19 @@
-<div class="header">
-	<div class="left">
-		<div class="lefttext">
-			<h1>About this tool</h1>
-			<h2>This tool provides you access to the model that our research team has created. The model calculates a risk value for nearly every location in the state of Iowa. The value is calculated relative to other locations that are known to have palmer infestations. The model takes into account factors outside of a farmers control such as average highest temperature, soil quality, elevation, rainfall and wind as well as demographic information to compute a risk value. The final risk value represents how similar or dissimilar the location is to places known to be infested with palmer.</h2>
+<div class="backgroundarea">
+	<div class="header">
+		<div class="left">
+			<div class="lefttext">
+				<h1>About this tool</h1>
+				<h2>This tool provides you access to the model that our research team has created. The model calculates a risk value for nearly every location in the state of Iowa. The value is calculated relative to other locations that are known to have palmer infestations. The model takes into account factors outside of a farmers control such as average highest temperature, soil quality, elevation, rainfall and wind as well as demographic information to compute a risk value. The final risk value represents how similar or dissimilar the location is to places known to be infested with palmer.</h2>
+			</div>
 		</div>
-	</div>
-	<div class="right">
-		<div id="map">
-			<app-google-map (marked)="onMarked($event)" [palmer]="palmer"></app-google-map>
+		<div class="right">
+			<div id="map">
+				<app-google-map (marked)="onMarked($event)" [palmer]="palmer"></app-google-map>
+			</div>
 		</div>
 	</div>
 	<div class="info">
-		<div class="righttext">
+		<div class="infotext">
 			<p>The table below provides more details about what factors lead to a high or low risk calculation. The results of our model <strong>are not</strong> an indication that Palmer has been sighted, but a high risk value does mean that the conditions are right for Palmer Amaranth to grow in your area. The entire state of Iowa is threatened by Palmer Ameranth and other dangerous weeds, please follow the link below for educational information. </p>
 			<p class="noindent"><a routerLink="/education"><u><strong>How to defend against Palmer Amaranth and other dangerous weeds >>></strong></u></a></p>
 			<table>
