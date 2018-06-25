@@ -39,12 +39,12 @@ export class BlogComponent implements OnInit{
     }
 
     getNewer() {
-      this.cursor -= 10;
+      this.cursor -= 5;
       this.getBlogPosts(this.cursor);
     }
 
     getOlder() {
-      this.cursor += 10;
+      this.cursor += 5;
       this.getBlogPosts(this.cursor);
     }
 }

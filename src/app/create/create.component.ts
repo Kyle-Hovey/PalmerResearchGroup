@@ -16,8 +16,6 @@ import { Post } from '../post';
 
 export class CreateComponent implements OnInit {
 
-  private editUrl = '/api/editpost';
-  
   NewPost = true;
 
   EditingPost = false;
@@ -134,12 +132,12 @@ export class CreateComponent implements OnInit {
     }
 
     getPrevious() {
-      this.cursor -= 10;
+      this.cursor -= 5;
       this.getBlogPosts(this.cursor);
     }
 
     getNext() {
-      this.cursor += 10;
+      this.cursor += 5;
       this.getBlogPosts(this.cursor);
     }
 
@@ -171,5 +169,11 @@ export class CreateComponent implements OnInit {
       this.model = data;
       console.log(this.model);
       });
+    }
+
+    newPost() {
+      this.model = new Post("","","",null);
+      this.EditingPost = false;
+      this.NewPost = true;
     }
 }

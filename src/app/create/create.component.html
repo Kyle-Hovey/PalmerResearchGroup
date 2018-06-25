@@ -1,51 +1,57 @@
-<button (click)="logout()">Logout</button>
+<div class="header">
+    <div class="middle">
+    	<button (click)="logout()">Logout</button><button *ngIf="EditingPost" style="float: right;" (click)="newPost()">New Post</button>
+        <div class="middletext">
+			<div *ngIf="!submitted && !edited">
+				<div *ngIf="NewPost">
+					<h1>Write a new blog post</h1>
 
-<div *ngIf="!submitted && !edited">
-	<div *ngIf="NewPost">
-		<div id="bodytitle">Write a new blog post</div>
+					<form (ngSubmit)="submitNew()" #postForm="ngForm" class="createform">
+						<label for="title">Title of Article: </label><br>
+						<input type="text" name="title" placeholder="Title of post"required [(ngModel)]="model.title"><br>
+						<label for="author">Author: </label><br>
+						<input type="text" name="author" placeholder="Author of post"required [(ngModel)]="model.author"><br>
+						<label for="text">Content of article: </label><br>
+						<textarea name="text" required [(ngModel)]="model.text"></textarea><br>
+						<label for="photo">Upload photograph:</label><br><br>
+						<input id="photo" type="file" name="photo" required><br>
+						<button type="submit">Post Article</button>
+					</form>
+				</div>
 
-		<form (ngSubmit)="submitNew()" #postForm="ngForm" class="formBody">
-			<u>Title of Article: </u><br>
-			<input type="text" name="title" placeholder="Title of post" id="contactinput" required [(ngModel)]="model.title"><br>
-			<u>Author: </u><br>
-			<input type="text" name="author" placeholder="Author of post" id="contactinput" required [(ngModel)]="model.author"><br>
-			<u>Content of article: </u><br>
-			<textarea name="text" id="largetextbox" required [(ngModel)]="model.text"></textarea><br>
-			<u>Upload photograph: </u><br><br>
-			<input id="photo" type="file" name="photo" required><br><br>
-			<button type="submit">Post Article</button>
-		</form>
-	</div>
+				<div *ngIf="EditingPost">
+					<h1>Edit blog post</h1>
 
-	<div *ngIf="EditingPost">
-		<div id="bodytitle">Edit blog post</div>
+					<form (ngSubmit)="submitEdit()" #postForm="ngForm" class="createform">
+						<p class="noindent">Originally Written: {{model.date | date: format : short}}</p>
+						<label for="title">Title of Article: </label><br>
+						<input type="text" name="title" placeholder="Title of post"required [(ngModel)]="model.title"><br>
+						<label for="author">Author: </label><br>
+						<input type="text" name="author" placeholder="Author of post"required [(ngModel)]="model.author"><br>
+						<label for="text">Content of article: </label><br>
+						<textarea name="text"required [(ngModel)]="model.text"></textarea><br>
+						<label for="photo">Upload photograph:</label><br><br>
+						<div *ngIf="model.photo">			
+							<img src="{{model.photo}}" class="currentPhoto">
+							<button type="button" (click)="deleteCurrentPhoto(model.photo, model._id)">Delete Current Photo</button>
+						</div>
+						<input *ngIf="!model.photo" id="photo" type="file" name="photo" required><br><br>
+						<button type="submit">Update Article</button>
+					</form>
+				</div>
 
-		<form (ngSubmit)="submitEdit()" #postForm="ngForm" class="formBody">
-			<p class="noindent">Originally Written: {{model.date | date: format : short}}</p>
-			<u>Title of Article: </u><br>
-			<input type="text" name="title" placeholder="Title of post" id="contactinput" required [(ngModel)]="model.title"><br>
-			<u>Author: </u><br>
-			<input type="text" name="author" placeholder="Author of post" id="contactinput" required [(ngModel)]="model.author"><br>
-			<u>Content of article: </u><br>
-			<textarea name="text" id="largetextbox" required [(ngModel)]="model.text"></textarea><br>
-			<u>Upload photograph: </u><br><br>
-			<div *ngIf="model.photo">			
-				<img src="{{model.photo}}" class="currentPhoto">
-				<button type="button" (click)="deleteCurrentPhoto(model.photo, model._id)">Delete Current Photo</button>
 			</div>
-			<input *ngIf="!model.photo" id="photo" type="file" name="photo" required><br><br>
-			<button type="submit">Update Article</button>
-		</form>
+
+			<div *ngIf="submitted">
+				<p class="noindent">You have submitted the following article.</p>
+				<div id="bodytitle">{{model.title}}</div>
+				<p class="noindent">{{model.author}}</p>
+				<p>{{model.text}}</p>
+				<img src="{{model.photo}}">
+			</div>
+
+		</div>
 	</div>
-
-</div>
-
-<div *ngIf="submitted">
-	<p class="noindent">You have submitted the following article.</p>
-	<div id="bodytitle">{{model.title}}</div>
-	<p class="noindent">{{model.author}}</p>
-	<p>{{model.text}}</p>
-	<img src="{{model.photo}}">
 </div>
 
 <div *ngIf="edited">
@@ -56,14 +62,23 @@
 	<p>{{details?.username}}</p>
 </div>
 
+<div class="cursorbuttons">
+	<button *ngIf="cursor > 0" (click)="getPrevious()">Get previous 10 posts </button><button *ngIf="!noPosts" (click)="getNext()">Get next 10 posts</button>
+</div>
+
 <div *ngIf="!noPosts">
 	<div *ngFor="let post of posts" class="post">
+		<img *ngIf="post.photo" src="{{post.photo}}" class="postImage">
+		<div *ngIf="!post.photo" class="postImage" style="color:green;"></div>
 		<div class="postContent">
-			<div class="postTitle"><button (click)="startEdit(post._id)">Edit</button><button (click)="deletePost(post._id)">Delete</button>{{post.title}} </div>
+			<div class="postTitle">{{post.title}}</div>
+			<div class="postAuthor">Written by {{post.author}}</div>
+			<button (click)="startEdit(post._id)">Edit</button><button (click)="deletePost(post._id)">Delete</button>
 		</div>	
 	</div>
 </div>
 
-<p *ngIf="noPosts">No posts to show.</p>
 
-<button *ngIf="cursor > 0" (click)="getPrevious()">Get previous 10 posts </button><button *ngIf="!noPosts" (click)="getNext()">Get next 10 posts</button>
+
+<h1 *ngIf="noPosts" style="text-align: center">No posts to show.</h1>
+
