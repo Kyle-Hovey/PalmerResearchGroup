@@ -1,8 +1,162 @@
+h1 {
+	font-size: 40px;
+	font-family: inherit;
+	margin-bottom: 5px;
+}
+
+.header {
+	height: calc(100vh - 80px);
+	width: 100%;
+	display:inline-block;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#6bba70+0,43b749+100 */
+	background: linear-gradient(to bottom, rgba(107,186,112,.6) 0%,rgba(67,183,73,.6) 100%),url(Palmer.jpeg); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	font-size: 0;
+	margin: 0;
+	padding: 0;
+}
+
+.middle {
+	width: 65%;
+	height: 100%;
+	background: rgba(255, 255, 255, .4);
+	margin: 0 auto;
+	position: relative;
+	font-size: 0;
+}
+
+.middletext {
+	position: absolute;
+	top: 45%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: auto%;
+	font-size: 0;
+	text-align: center;
+	margin-top: 25px;
+}
+
+button {
+	background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 20px 38px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+	font-family: inherit;
+    margin: 4px 2px;
+    cursor: pointer;
+	margin-top: 20px;
+	margin-left: 20px;
+	transition: .3s;
+}
+
+button:hover {
+	background-color: #3d8e40
+}
+
+textarea {
+	height: 150px;
+	width: 35vw;
+    padding: 10px 10px 10px 10px;
+    border: solid thin gray;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+	margin-bottom: 5px;
+	margin-top: 5px;
+	font-family:inherit;
+	resize: none;
+}
+
+.createform input {
+	height: 10px;
+	width: 35vw;
+    padding: 10px 10px 10px 10px;
+    border: solid thin gray;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+	margin-bottom: 20px;
+	margin-top: 5px;
+	font-family:inherit;
+}
+
+#photo {
+	height: 10px;
+	width: 35vw;
+    padding: 10px 10px 10px 10px;
+    border: none;
+    background-color: transparent;
+    border-radius: 4px;
+    margin-bottom: 20px;
+	margin-top: 5px;
+	font-family:inherit;
+}
+
+.createform {
+	padding: 10px 10px 10px 10px;
+	background: rgba(0, 0, 0, .1);
+	text-align: center;
+	font-size: 14px;
+}
+
+.post {
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	width: 80%;
+	margin:auto;
+	margin-bottom: 20px;
+	display:flex;
+	justify-content: flex-start;
+	height: 200px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.postImage{
+	height:200px;
+	width: 200px;
+	align-self: center;
+	object-fit: cover;
+}
+
+.postContent{
+	display:inline-block;
+	width: calc(100% - 250px);
+	margin-right: 50px;
+	padding:0 10px 0 10px;
+}
+
+.postTitle {
+	display: block;
+	width: 100%;
+	max-height: 100px;
+	white-space: nowrap;
+	font-size: 40px;
+	font-weight: bold;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.postAuthor{
+	display: block;
+	width: 100%;
+	white-space: nowrap;
+	color: #015249;
+	}
+.postText {
+	margin-top: 10px;
+	text-indent: 2em;
+	width: 100%;
+	white-space: normal;
+	overflow: hidden;
+	font-family: inherit;
+}
+
 .currentPhoto {
 	height: 200px;
 }
 
-.formBody {
-	width: 500px;
-	margin:auto;
+.cursorbuttons {
+	margin: auto;
+	text-align: center;
 }

@@ -16,6 +16,7 @@ export class BlogService {
   private deletePhotoUrl = '/api/delete/';
   private uploadUrl = '/api/upload';
   private createUrl = '/api/blogpost';
+  private editPostUrl = '/api/editpost';
 
   constructor(private http: HttpClient) { }
 
@@ -36,7 +37,7 @@ export class BlogService {
   }
 
   editPost(post) {
-    return this.http.post(this.editUrl, post);
+    return this.http.post(this.editPostUrl, post);
   }
   
   deletePost(id) {
