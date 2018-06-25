@@ -1,0 +1,101 @@
+* {
+	margin: 0;
+	padding: 0;
+	font-size: 0;
+}
+
+.header {
+	height: 650px;
+	width: 100%;
+	display:inline-block;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#6bba70+0,43b749+100 */
+	background: linear-gradient(to bottom, rgba(107,186,112,.6) 0%,rgba(67,183,73,.6) 100%),url(Palmer.jpeg); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	font-size: 0;
+	margin: 0;
+	padding: 0;
+}
+
+.right {
+	width: 65%;
+	height: 100%;
+	background: rgba(255, 255, 255, .2);
+	float: right;
+	position: relative;
+	font-size: 0;
+}
+
+.righttext {
+	position: absolute;
+	top: 45%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 90%;
+	font-size: 0;
+}
+
+button {
+	background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 20px 38px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+	font-family: inherit;
+    margin: 4px 2px;
+    cursor: pointer;
+	margin-top: 20px;
+	margin-left: 20px;
+	transition: .3s;
+}
+
+button:hover {
+	background-color: #3d8e40
+}
+
+h1 {
+	font-size: 70px;
+}
+
+h2 {
+	margin: 0;
+	padding: 0;
+	font-size: 24px;
+	text-align: justify;
+}
+
+p {
+	font-size: 12px;
+}
+
+.blogarea {
+	width: 100%;
+	height: 400px;
+	font-size: 0;
+	position: relative;
+}
+
+.postarea {
+	width: 80%;
+	height: auto;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	padding: 10px 10px 10px 10px;
+}
+
+.blogheader {
+	width: 100%;
+	margin: 0 auto;
+	height: 40px;
+	line-height: 40px;
+}
+
+.blogposts {
+	width: 100%;
+	height: 300px;
+	margin: 0 auto;
+	background: rgba(200, 200, 200, .6);
+}

@@ -1,24 +1,32 @@
-<div *ngIf="!submitted">
-	
-	<div id="bodytitle">Contact Us</div>
-	
-	<form (ngSubmit)="sendEmail()" #postForm="ngForm">
-		<u>Name: </u><br>
-		<input type="text" name="name" id="contactinput" required [(ngModel)]="model.name"><br>
-		<u>Email: </u><br>
-		<input type="email" name="email" id="contactinput" required [(ngModel)]="model.email"><br>
-		<u>Phone Number: </u><br>
-		<input type="email" name="phone" id="contactinput" required [(ngModel)]="model.phone"><br>
-		<u>Comment: </u><br>
-		<input type="text" name="message" id="contactinput" required [(ngModel)]="model.message"><br>
-		<button type="submit">Submit</button>
-	</form>
+<div class="unsubmitted" *ngIf="!submitted">
+	<div class="header">
+		<div class="middle">
+			<div class="middletext">
+				<h1>Contact Us</h1>
+				<div class="contacthelp">If you would like to get in contact with the research team at Simpson College, please provide us with the information below. From there, we will contact you as soon as we are available.</div>
+				<form (ngSubmit)="sendEmail()" #postForm="ngForm" class="contactform">
+					<div class="contacthead">Name<br></div>
+					<input type="text" name="name" id="contactinput" required [(ngModel)]="model.name"><br>
+					<div class="contacthead">Email<br></div>
+					<input type="email" name="email" id="contactinput" required [(ngModel)]="model.email"><br>
+					<div class="contacthead">Phone Number<br></div>
+					<input type="email" name="phone" id="contactinput" required [(ngModel)]="model.phone"><br>
+					<div class="contacthead">Comment<br></div>
+					<textarea type="text" name="message" id="largecontactinput" required [(ngModel)]="model.message"></textarea><br>
+					<button type="submit">Submit</button>
+				</form>
+			</div>
+		</div>
+	</div>
 </div>
 
-<div *ngIf="submitted">
-	<div id="bodytitle">You have successfully submitted this contact information.</div>
-	<p class="noindent">Name: {{model.name}}</p>
-	<p class="noindent">Email: {{model.email}}</p>
-	<p class="noindent">Phone: {{model.phone}}</p>
-	<p class="noindent">Message: {{model.message}}</p>
+<div class="unsubmitted" *ngIf="submitted">
+	<div class="header">
+		<div class="middle">
+			<div class="middletext">
+				<h2>Thank you. We will contact you when we are next available.</h2>
+				<h2>You will be redirected back to the front page shortly.</h2>
+			</div>
+		</div>
+	</div>
 </div>

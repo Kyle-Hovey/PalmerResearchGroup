@@ -1,5 +1,6 @@
 import { Component, OnInit, ElementRef, Input } from '@angular/core';
 import { Http, Response } from '@angular/http';
+import { Router } from '@angular/router';
 
 import "rxjs/add/operator/do";
 import "rxjs/add/operator/map";
@@ -16,7 +17,7 @@ export class ContactComponent implements OnInit {
 	
 	private mailUrl = '/api/sendmail';
 	
-    constructor(private http: Http) { }
+    constructor(private http: Http, private router: Router) { }
 	
 	ngOnInit() {
 	}
@@ -27,11 +28,12 @@ export class ContactComponent implements OnInit {
 	
 	sendEmail() {
 		let formData = new FormData();
-		this.http.post(this.mailUrl, this.model).map((res:Response) => res).subscribe(
-  			(success) => {
-  				alert(success);
-  			},
-  			(error) => alert(error))
+		this.http.post(this.mailUrl, this.model).map((res:Response) => res).subscribe()
 		this.submitted = true;
+		setTimeout(() => 
+		{
+			this.router.navigate(['']);
+		},
+		5000);
 	}
 }

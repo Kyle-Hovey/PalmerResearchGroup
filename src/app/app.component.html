@@ -1,13 +1,17 @@
-<div class="navbarClass" id="nav">
-	<div class="navbarSection">
-		<a routerLink="/" onclick="removeMenu()">Home</a>
-		<a routerLink="/team" onclick="removeMenu()">Our Team</a>
-		<a routerLink="/blog" onclick="removeMenu()">Blog</a>
-		<a routerLink="/palmer" id="important" onclick="removeMenu()">Risk Assessment Webtool</a>
-		<a routerLink="/contact" onclick="removeMenu()">Contact Us</a>
-		<a routerLink="javascript:void(0);" class="icon" onclick="accessMenu()">
-			<i class="fa fa-bars"></i>
-		</a>
+<div class="nav" id="navbar">
+	<div class="logo">
+		Simpson College Palmer Project
+	</div>
+	<div class="menu">
+		<ul>
+			<li><a routerLink="/">Home</a></li>
+			<li><a routerLink="/blog">Blog</a></li>
+			<li><a routerLink="/palmer">Risk Assessment</a></li>
+			<li><a routerLink="/team">The Team</a></li>
+			<li><a routerLink="/contact">Contact Us</a></li>
+		</ul>
 	</div>
 </div>
-<router-outlet></router-outlet>
+<div class="pageapp">
+	<router-outlet></router-outlet>
+</div>

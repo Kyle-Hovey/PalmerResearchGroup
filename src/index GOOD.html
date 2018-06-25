@@ -1,16 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-	<html>
+<html>
 	<head>
-		<meta charset=<"UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<title>The Palmer Project | Simpson College</title>
-		<link rel="stylesheet" href="styles.css">
-		<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
-		<link rel="stylesheet" href="href= //maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-		<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 		<script type="text/javascript" src="script.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="utf-8">
 		<base href="/">
 		<link href="//fonts.googleapis.com/css?family=Archivo Narrow" rel='stylesheet'>
 		<link href="//fonts.googleapis.com/css?family=Quicksand" rel='stylesheet'>
@@ -23,6 +17,25 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	</head>
 	<body>
-		<app-root></app-root>
+		<div class="main">
+			<div class="bodytext">
+				<app-root></app-root>
+			</div>
+		</div>
+		<script>
+		function accessMenu() {
+			var x = document.getElementById("nav");
+			if (x.className === "navbarClass"){
+				x.className += " responsiveMenu";
+			} else {
+				x.className = "navbarClass";
+			}
+		}
+		
+		function removeMenu() {
+			var x = document.getElementById("nav");
+			x.className = "navbarClass";
+		}
+		</script>
 	</body>
 </html>
