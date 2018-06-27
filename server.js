@@ -231,7 +231,7 @@ app.delete('/api/deletePost/:id', function(req, res, next) {
 	});
 })
 
-//Get an increment of 10 blogposts ex: /api/blog/10 gets blog post 11-20, ordered new to old
+//Get an increment of 5 blogposts ex: /api/blog/5 gets blog post 6-10, ordered new to old
 app.get('/api/blog/:num', function(req, res, next) {
 	db.collection(BLOG_COLLECTION).find({}).sort({_id:-1}).skip(parseInt(req.params.num)).limit(5).toArray(function(error, documents) {
 		if (error) throw error;
@@ -241,6 +241,16 @@ app.get('/api/blog/:num', function(req, res, next) {
 		res.send(documents);
 	});
 });
+
+app.get('/api/newestpost', function(req, res, next) {
+	db.collection(BLOG_COLLECTION).find({}).sort({_id:-1}).skip(parseInt(req.params.num)).limit(1).toArray(function(error, documents) {
+		if (error) throw error;
+		documents.forEach(function(document) {
+			document.text = document.text.replace(/\n/g, "<br />");
+		})
+		res.send(documents[0]);
+	});
+})
 
 //Get a single blog post by the post id number
 app.get('/api/post/:id', async function(req,res,next) {

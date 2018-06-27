@@ -17,12 +17,17 @@ export class BlogService {
   private uploadUrl = '/api/upload';
   private createUrl = '/api/blogpost';
   private editPostUrl = '/api/editpost';
+  private newestUrl = '/api/newestpost';
 
   constructor(private http: HttpClient) { }
 
   getBlogPosts(num) {
 	  return this.http.get(this.blogUrl + num);
 	}
+
+  getNewest() {
+    return this.http.get(this.newestUrl);
+  }
 
   getPostForEditing(id){
     return this.http.get(this.editUrl + id);

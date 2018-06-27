@@ -1,26 +1,44 @@
-<h1>The Palmer Blog</h1>
-
-<p>Stay updated on what our team is working on by checking out our blog!</p><br /><br />
-
-<button *ngIf="cursor > 0" (click)="getNewer()">Newer Posts</button><button *ngIf="!noPosts" (click)="getOlder()">Older Posts</button>
-
-<div >
-	<h1>{{posts[0].title}}</h1>
-</div>
+<h1 class="blogheader">The Palmer Project Blog</h1>
 
 
-<div *ngIf="!noPosts">
-	<div *ngFor="let post of posts" routerLink="/post/{{post._id}}" class="post">
-		<img *ngIf="post.photo" src="{{post.photo}}" class="postImage">
-		<div *ngIf="!post.photo" class="postImage" style="color:green;"></div>
-		<div class="postContent">
-			<div class="postTitle">{{post.title}}</div>
-			<div class="postAuthor">Written by {{post.author}}</div>
-			<div class="postText" [innerHTML]="post.text"></div>
-		</div>	
+<div class="blogcontainer">
+	<div class="newestpost">
+		<div *ngIf="newestPost.photo" class="newest-post-photo">
+			<img src="{{newestPost.photo}}" />
+			<h1>{{newestPost.title}}</h1>
+		</div>
+		<h1 *ngIf="!newestPost.photo">{{newestPost.title}}</h1>
+		<div class="underline"></div>
+		<p class="author">Written by {{newestPost.author}}</p>
+		<p *ngIf="!newestPost.editedDate" class="date">Date Published: {{newestPost.date | date:'MMM dd, yyyy hh:mm aa'}}</p>
+		<p *ngIf="newestPost.editedDate" class="date">Last Updated: {{newestPost.editedDate}}</p>
+		<div class="underline"></div>
+		<p [innerHTML]='newestPost.text'></p>
+		<div class="underline"></div>
 	</div>
-</div>
 
-<div *ngIf="noPosts">
-	<p class="noindent">No Posts Available.</p>
+	<div *ngIf="!noPosts" class="recentposts">
+		<h1>Recent Posts</h1>
+		<div class="buttons">
+			<div class="newerposts">
+				<button *ngIf="cursor > 0" (click)="getNewer()">&lt; Newer Posts</button>
+			</div>
+			<div class="olderposts">
+				<button *ngIf="!noMorePosts" (click)="getOlder()" >Older Posts &gt;</button>
+			</div>			
+		</div>
+		<div class="underline"></div>
+		<div *ngFor="let post of posts" routerLink="/post/{{post._id}}" class="recentpost">
+			<div class="recentposttitle">{{post.title}}</div>
+			<img *ngIf="post.photo" src="{{post.photo}}" class="recentpostimage">
+		</div>
+		<div class="buttons">
+			<div class="newerposts">
+				<button *ngIf="cursor > 0" (click)="getNewer()">&lt; Newer Posts</button>
+			</div>
+			<div class="olderposts">
+				<button *ngIf="!noMorePosts" (click)="getOlder()" >Older Posts &gt;</button>
+			</div>			
+		</div>
+	</div>
 </div>

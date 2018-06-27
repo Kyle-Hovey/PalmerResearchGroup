@@ -12,14 +12,17 @@ export class BlogComponent implements OnInit{
 
     posts: Post[];
 
+    newestPost: Post;
+
     noPosts = false;
 
-    selectedPost: Post;
+    noMorePosts = false;
 
     cursor = 0;
 
     ngOnInit() {
     	this.getBlogPosts(this.cursor);
+        this.getNewestPost();
     }
 
     getBlogPosts(num) {
@@ -30,12 +33,29 @@ export class BlogComponent implements OnInit{
     			this.noPosts = true;
     		}
     		else{
+                if (data.length < 5) {
+                    this.noMorePosts = true;
+                } else {
+                    this.noMorePosts = false;
+                }
     			console.log("data");
     			this.posts = data;
                 this.noPosts = false;
     			console.log(this.posts);
     		}
     	});
+    }
+
+    getNewestPost() {
+        this.blogService.getNewest()
+        .subscribe((data:Post) => {
+            if(!data) {
+                this.noPosts = true;
+            } else {
+                console.log(data);
+                this.newestPost = data;
+            }
+        });
     }
 
     getNewer() {

@@ -23,7 +23,7 @@
 					<h1>Edit blog post</h1>
 
 					<form (ngSubmit)="submitEdit()" #postForm="ngForm" class="createform">
-						<p class="noindent">Originally Written: {{model.date | date: format : short}}</p>
+						<p class="noindent">Originally Written: {{model.date | date: 'MMM dd, yyyy hh:mm aa'}}</p>
 						<label for="title">Title of Article: </label><br>
 						<input type="text" name="title" placeholder="Title of post"required [(ngModel)]="model.title"><br>
 						<label for="author">Author: </label><br>
@@ -63,7 +63,7 @@
 </div>
 
 <div class="cursorbuttons">
-	<button *ngIf="cursor > 0" (click)="getPrevious()">Get previous 10 posts </button><button *ngIf="!noPosts" (click)="getNext()">Get next 10 posts</button>
+	<button *ngIf="cursor > 0" (click)="getPrevious()">Get newer posts </button><button *ngIf="!noMorePosts" (click)="getNext()">Get older posts</button>
 </div>
 
 <div *ngIf="!noPosts">

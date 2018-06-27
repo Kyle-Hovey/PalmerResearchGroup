@@ -28,6 +28,7 @@ export class CreateComponent implements OnInit {
 
   cursor = 0;
 
+  noMorePosts = false;
 
   model = new Post("","","",null);
 
@@ -110,7 +111,6 @@ export class CreateComponent implements OnInit {
 
     this.blogService.editPost(this.model).map((res:Response)=> res).subscribe();
     
-
     this.edited = true;
 
   }
@@ -121,10 +121,16 @@ export class CreateComponent implements OnInit {
         if(!data || data.length == 0){
           console.log("no data");
           this.noPosts = true;
+          this.noMorePosts = true;
         }
         else{
           console.log(data);
           this.posts = data;
+          if (data.length < 5) {
+            this.noMorePosts = true;
+          } else {
+            this.noMorePosts = false;
+          }
           this.noPosts = false;
           console.log(this.posts);
         }
