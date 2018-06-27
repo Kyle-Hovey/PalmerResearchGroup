@@ -18,7 +18,8 @@ export class ContactComponent implements OnInit {
 	
 	private mailUrl = '/api/sendmail';
 	
-    constructor(private http: Http, private router: Router) { }
+    constructor(private http: HttpClient, private router: Router) { }
+    
 	
 	ngOnInit() {
 	}

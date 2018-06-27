@@ -8,13 +8,17 @@ table {
 }
 
 td, th {
-    border: 1px solid #dddddd;
+    border: 1px solid rgb(0, 0, 0);
     text-align: left;
     padding: 8px;
 }
 
+tr:nth-child(odd) {
+	background-color: rgba(255, 255, 255, .8);
+}
+
 tr:nth-child(even) {
-    background-color: #dddddd;
+    background-color: rgba(130, 130, 130, .8);
 }
 
 * {
@@ -22,21 +26,25 @@ tr:nth-child(even) {
 	padding: 0;
 }
 
+.backgroundarea {
+	width: 100%;
+	height: 100%;
+}
+
 .header {
 	width: 100%;
-	height: 700px;
+	height: 600px;
 	display:inline-block;
-	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#6bba70+0,43b749+100 */
-	background: linear-gradient(to bottom, rgba(107,186,112,.6) 0%,rgba(67,183,73,.6) 100%),url(Palmer.jpeg); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	font-size: 0;
 	margin: 0;
 	padding: 0;
+	background: linear-gradient(to bottom, rgba(107,186,112,.6) 0%,rgba(67,183,73,.6) 100%),url(Palmer.jpeg);
 }
 
 .left {
 	width: 40%;
 	height: 100%;
-	background: rgba(255, 255, 255, .4);
+	background: rgba(255, 255, 255, .2);
 	margin: 0 auto;
 	position: relative;
 	font-size: 0;
@@ -51,8 +59,9 @@ tr:nth-child(even) {
 	position: relative;
 }
 
-.righttext {
+.infotext {
 	font-size: 24px;
+	margin: 12px 12px 12px 12px;
 }
 
 .lefttext {
@@ -68,6 +77,19 @@ tr:nth-child(even) {
 
 .info {
 	font-size: 24px;
+	width: 80%;
+	height: auto;
+	margin: 0 auto;
+	background: rgba(0, 0, 0, .1);
+	margin-top: 24px;
+	margin-bottom: 24px;
+	padding: 8px 8px 8px 8px;
+}
+
+.map {
+	width: 100%;
+	height: 100%;
+	position: relative;
 }
 
 h1 {
@@ -76,4 +98,5 @@ h1 {
 
 h2 {
 	font-size: 25px;
+	font-weight: 100;
 }
