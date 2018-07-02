@@ -53,6 +53,7 @@ img {
 	transform: translate(-50%, -50%);
 	width: 90%;
 	font-size: 0;
+	float: center;
 }
 
 button {
@@ -87,15 +88,20 @@ h2 {
 	text-align: justify;
 }
 
+h3 {
+	font-size: 70px;
+}
+
 p {
 	font-size: 12px;
 }
 
 .blogarea {
 	width: 100%;
-	height: 400px;
+	height: 500px;
 	font-size: 0;
 	position: relative;
+	background: #E1F2E1;
 }
 
 .postarea {
@@ -111,8 +117,8 @@ p {
 .blogheader {
 	width: 100%;
 	margin: 0 auto;
-	height: 40px;
-	line-height: 40px;
+	height: 70px;
+	line-height: 70px;
 }
 
 .blogposts {
@@ -120,4 +126,76 @@ p {
 	height: 300px;
 	margin: 0 auto;
 	background: rgba(200, 200, 200, .6);
+}
+
+@media screen and (max-width: 1200px) {
+	h1 {
+		font-size: 60px;
+	}
+	
+	h2 {
+		font-size: 22px;
+	}
+	
+	.righttext {
+		top: 0;
+		left: 0;
+		transform: translate(5%, 7%);
+	}
+	
+}
+
+@media screen and (max-width: 900px) {
+	.left {
+		display: none;
+	}
+	
+	.right {
+		width: 100%;
+	}
+	
+	h1 {
+		font-size: 60px;
+	}
+	
+	h2 {
+		font-size: 22px;
+	}
+	
+	h3 {
+		font-size: 6.666666666666667vw
+	}
+	
+	.blogheader {
+		height: 6.666666666666667vw;
+		line-height: 6.666666666666667vw;
+	}
+	
+	button {
+		margin: 20px auto;
+	}
+}
+
+@media screen and (max-width: 550px) {
+	h1 {
+		font-size: 50px;
+	}
+	
+	h2 {
+		font-size: 18px;
+	}
+	
+	button {
+		font-size: 15px;
+	}
+}
+
+@media screen and (max-width: 400px) {
+	h1 {
+		font-size: 40px;
+	}
+	
+	h2 {
+		font-size: 14px;
+	}
 }

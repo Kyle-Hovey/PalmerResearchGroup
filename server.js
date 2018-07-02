@@ -199,6 +199,7 @@ app.post('/api/delete/:path/:id', function(req, res, next) {
 //Create a new post and add it to the database
 app.post('/api/blogpost', function(req, res, next) {
 	var newPost = req.body;
+	console.log("NEW POST");
 	db.collection(BLOG_COLLECTION).insertOne(newPost, function(err, doc) {
 		if (err) {
 			handleError(res, err.message, "Failed to create new post.");
