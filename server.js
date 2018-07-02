@@ -44,10 +44,10 @@ var distDir = __dirname + "/dist/PalmerClient";
 app.use(express.static(distDir));
 
 //Route to static file directory
-app.use(express.static('uploads'));
+app.use(express.static('public'));
 
 //Variables needed for File Uploads
-var uploadDir = './uploads/';
+var uploadDir = './public/uploads/';
 var storage = multer.diskStorage({
 	destination: uploadDir,
 	filename: function(req, file, cb){
@@ -185,7 +185,7 @@ app.post('/api/upload', function(req, res, next) {
 
 app.post('/api/delete/:path/:id', function(req, res, next) {
 	var id = ObjectId(req.params.id);
-	fs.unlink("./uploads/" + req.params.path, function() {
+	fs.unlink("./public/uploads/" + req.params.path, function() {
 		db.collection(BLOG_COLLECTION).update({_id: id}, {$unset: {photo: ""}}, function(err, doc){
 			if (err){
 				handleError(res, err.message, "Failed to delete file path.");
