@@ -36,7 +36,7 @@
 						<textarea name="text"required [(ngModel)]="model.text"></textarea><br>
 						<label for="photo">Upload photograph:</label><br><br>
 						<div *ngIf="model.photo">			
-							<img src="{{model.photo}}" class="currentPhoto">
+							<img src="/uploads/{{model.photo}}" class="currentPhoto">
 							<button type="button" (click)="deleteCurrentPhoto(model.photo, model._id)">Delete Current Photo</button>
 						</div>
 						<input *ngIf="!model.photo" id="photo" type="file" name="photo" required><br><br>
@@ -51,7 +51,7 @@
 
 		<div class="submission" *ngIf="submitted">
 			<h1>You have submitted the following article.</h1>
-			<img class="currentPhoto" src="{{model.photo}}">
+			<img *ngIf="model.photo" class="currentPhoto" src="/uploads/{{model.photo}}">
 			<h1>{{model.title}}</h1>
 			<p>{{model.author}}</p>
 			<p [innerHTML]='model.text'></p>
@@ -59,7 +59,7 @@
 
 		<div class="submission" *ngIf="edited">
 			<h1>You have edited the following article.</h1>
-			<img class="currentPhoto" src="{{model.photo}}">
+			<img *ngIf="model.photo" class="currentPhoto" src="/uploads/{{model.photo}}">
 			<h1>{{model.title}}</h1>
 			<p>{{model.author}}</p>
 			<p [innerHTML]='model.text'></p>
@@ -87,10 +87,10 @@
 		<div class="recentposttitle">
 			{{post.title}}<br>
 			<div class="buttons3">
-				<button (click)="startEdit(post._id)">Edit</button><button (click)="deletePost(post._id)">Delete</button>
+				<button (click)="startEdit(post._id)">Edit</button><button (click)="deletePost(post._id, post.photo, post)">Delete</button>
 			</div>
 		</div>
-		<img *ngIf="post.photo" src="{{post.photo}}" class="recentpostimage">
+		<img *ngIf="post.photo" src="/uploads/{{post.photo}}" class="recentpostimage">
 	</div>
 	
 	<div class="buttons">

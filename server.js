@@ -44,10 +44,10 @@ var distDir = __dirname + "/dist/PalmerClient";
 app.use(express.static(distDir));
 
 //Route to static file directory
-app.use(express.static('uploads'));
+app.use(express.static('public'));
 
 //Variables needed for File Uploads
-var uploadDir = './uploads/';
+var uploadDir = './public/uploads/';
 var storage = multer.diskStorage({
 	destination: uploadDir,
 	filename: function(req, file, cb){
@@ -172,6 +172,7 @@ app.post('/api/sendmail', function (req, res) {
 //Upload a photo from the blog post page
 app.post('/api/upload', function(req, res, next) {
 	var path = '';
+	console.log("uploading photo");
 	upload(req, res, function(err) {
 		if (err) {
 			console.log(err);
@@ -185,7 +186,7 @@ app.post('/api/upload', function(req, res, next) {
 
 app.post('/api/delete/:path/:id', function(req, res, next) {
 	var id = ObjectId(req.params.id);
-	fs.unlink("./uploads/" + req.params.path, function() {
+	fs.unlink("./public/uploads/" + req.params.path, function() {
 		db.collection(BLOG_COLLECTION).update({_id: id}, {$unset: {photo: ""}}, function(err, doc){
 			if (err){
 				handleError(res, err.message, "Failed to delete file path.");
@@ -199,7 +200,7 @@ app.post('/api/delete/:path/:id', function(req, res, next) {
 //Create a new post and add it to the database
 app.post('/api/blogpost', function(req, res, next) {
 	var newPost = req.body;
-	console.log("NEW POST");
+	console.log(newPost);
 	db.collection(BLOG_COLLECTION).insertOne(newPost, function(err, doc) {
 		if (err) {
 			handleError(res, err.message, "Failed to create new post.");
@@ -223,11 +224,12 @@ app.post('/api/editpost', function(req, res, next) {
 
 app.delete('/api/deletePost/:id', function(req, res, next) {
 	var id = ObjectId(req.params.id);
+	console.log('deleting post');
 	db.collection(BLOG_COLLECTION).deleteOne({_id: id}, function(err) {
 		if (err) {
 			handleError(res, err.message, "Failed to delete post.");
 		} else {
-			res.status(201).send('Post Deleted');
+			res.status(201).json(req.params.id);
 		}
 	});
 })

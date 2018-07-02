@@ -5,7 +5,7 @@
 	<div class="content">
 		<div class="post">
 			<div *ngIf="post.photo" class="post-photo">
-				<img src="{{post.photo}}" />
+				<img src="/uploads/{{post.photo}}" />
 				<h1>{{post.title}}</h1>
 			</div>
 			<h1 *ngIf="!post.photo">{{post.title}}</h1>
@@ -35,7 +35,7 @@
 			
 			<div *ngFor="let post of posts" routerLink="/post/{{post._id}}" (click)="changePost(post._id)" class="recentpost">
 				<div class="recentposttitle">{{post.title}}</div>
-				<img *ngIf="post.photo" src="{{post.photo}}" class="recentpostimage">
+				<img *ngIf="post.photo" src="/uploads/{{post.photo}}" class="recentpostimage">
 			</div>
 			
 			<div class="buttons">

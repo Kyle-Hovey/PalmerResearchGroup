@@ -73,8 +73,9 @@ export class CreateComponent implements OnInit {
   		console.log(this.model);
   		
   		this.blogService.uploadPhoto(formData).map((res:Response) => res).subscribe();
-  		this.blogService.createPost(this.model).map((res:Response)=> res).subscribe();
+  		
   	}
+    this.blogService.createPost(this.model).map((res:Response)=> res).subscribe();
 
     this.getBlogPosts(this.cursor);
 
@@ -157,11 +158,14 @@ export class CreateComponent implements OnInit {
       });
     }
 
-    deletePost(id) {
+    deletePost(id, photo, post) {
       if (confirm('This will delete the post for good. Are you sure you want to do this?')) {
+        if (photo){
+          this.blogService.deletePhoto(photo, id, post).subscribe();
+        }
         this.blogService.deletePost(id).subscribe();
         this.getBlogPosts(this.cursor);
-        this.model = new Post("","","",null)
+        this.model = new Post("","","",null);
       }
     }
 
