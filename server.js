@@ -211,7 +211,7 @@ app.post('/api/blogpost', function(req, res, next) {
 app.post('/api/editpost', function(req, res, next) {
 	var editedPost = req.body;
 	var id = ObjectId(editedPost._id);
-	db.collection(BLOG_COLLECTION).update({_id: id}, {$set: {title: editedPost.title, author: editedPost.author, text: editedPost.text, photo: editedPost.photo	}}, function(err, doc) {
+	db.collection(BLOG_COLLECTION).update({_id: id}, {$set: {title: editedPost.title, author: editedPost.author, text: editedPost.text, photo: editedPost.photo, editedDate: editedPost.editedDate }}, function(err, doc) {
 		if (err) {
 			handleError(res, err.message, "Failed to update post.");
 		} else {

@@ -31,6 +31,7 @@ export class BlogComponent implements OnInit{
     		if(!data || data.length == 0){
     			console.log("no data");
     			this.noPosts = true;
+                console.log(this.noPosts)
     		}
     		else{
                 if (data.length < 5) {

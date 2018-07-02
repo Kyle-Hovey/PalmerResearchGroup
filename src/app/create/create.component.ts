@@ -72,17 +72,11 @@ export class CreateComponent implements OnInit {
   		
   		console.log(this.model);
   		
-  		this.blogService.uploadPhoto(formData).map((res:Response) => res).subscribe(
-  			(success) => {
-  				alert(success);
-  			},
-  			(error) => alert(error));
-  		this.blogService.createPost(this.model).map((res:Response)=> res).subscribe(
-  			(success) => {
-  				alert(success);
-  			},
-  			(error) => alert(error));
+  		this.blogService.uploadPhoto(formData).map((res:Response) => res).subscribe();
+  		this.blogService.createPost(this.model).map((res:Response)=> res).subscribe();
   	}
+
+    this.getBlogPosts(this.cursor);
 
   	this.submitted = true;
   }
@@ -111,6 +105,8 @@ export class CreateComponent implements OnInit {
 
     this.blogService.editPost(this.model).map((res:Response)=> res).subscribe();
     
+    this.getBlogPosts(this.cursor);
+
     this.edited = true;
 
   }
@@ -137,12 +133,12 @@ export class CreateComponent implements OnInit {
       });
     }
 
-    getPrevious() {
+    getNewer() {
       this.cursor -= 5;
       this.getBlogPosts(this.cursor);
     }
 
-    getNext() {
+    getOlder() {
       this.cursor += 5;
       this.getBlogPosts(this.cursor);
     }
@@ -151,6 +147,8 @@ export class CreateComponent implements OnInit {
       console.log('Editing Post:' + str);
       this.NewPost = false;
       this.EditingPost = true;
+      this.submitted = false;
+      this.edited = false;
       
       this.blogService.getPostForEditing(str)
       .subscribe((data : Post) => {
@@ -180,6 +178,8 @@ export class CreateComponent implements OnInit {
     newPost() {
       this.model = new Post("","","",null);
       this.EditingPost = false;
+      this.submitted = false;
+      this.edited = false;
       this.NewPost = true;
     }
 }

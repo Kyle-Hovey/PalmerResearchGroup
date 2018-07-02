@@ -8,27 +8,41 @@
 .blogheader {
 	width: 100%;
 	display:inline-block;
-	background-color: #C7E9C9;
+	background-color: #4CAF50;
 	font-size: 0;
 	margin: 0;
 	padding: 25px;
 	text-align: center;
 	font-size: 30pt;
 	font-style: inherit;
-	color: black;
+	color: white;
+}
+
+
+p {
+	font-size: 12px;
+	font-style: inherit;
+	line-height: 1.5;
 }
 
 .blogcontainer{
 	width: 100%;
 	display: inline-block;
-	background-color: #FDFDFD;
+	background-color: #ffffff;
+	position: relative;
+}
+
+.content {
+	width: 80%;
+	position: relative;
+	margin: 0 10% 0 10%;
+	background-color: #ffffff;
 }
 
 .newestpost {
-	width: 80%;
+	width: 100%;
 	padding: 50px 0 25px 0;
 	display: inline-block;
-	margin: 0 10% 0 10%;
 }
 
 .newest-post-photo {
@@ -42,7 +56,7 @@
 }
 
 .newestpost h1 {
-	font-size: 20pt;
+	font-size: 30pt;
 	font-style: inherit;
 	color: #1E7924;
 }
@@ -70,13 +84,13 @@
 .newestpost .author {
 	padding:10px 0 0 0;
 	font-size: 10pt;
-	color: #C0C0C0;
+	color: #1E7924;
 }
 
 .newestpost .date {
 	padding: 0 0 10px 0;
 	font-size: 10pt;
-	color: #C0C0C0;
+	color: #1E7924;
 }
 
 .underline {
@@ -86,10 +100,9 @@
 }
 
 .recentposts {
-	width: 80%;
+	width: 100%;
 	padding: 0 0 50px 0;
 	display: inline-block;
-	margin: 0 10% 0 10%;
 }
 
 .recentposts h1{
@@ -104,15 +117,24 @@
 	border-bottom: 2pt solid #1E7924;
 	overflow: hidden;
 	display: flex;
+	color: black;
+	background-color: white;
 }
 
 .recentposttitle {
 	width: 60%;
 	font-family: inherit;
 	font-size: 14pt;
-	color: black;
 	font-weight: bold;
 	align-self: center;
+	color: inherit;
+	padding-left: 10px;
+}
+
+.recentpost:hover {
+	background-color: #1E7924;
+	cursor: pointer;
+	color: white;
 }
 
 .recentpostimage {
@@ -121,6 +143,7 @@
 	margin-left: 10%;
 	align-self: center;
 	object-fit: cover;
+	padding-right: 10px;
 }
 
 .buttons {
@@ -135,7 +158,7 @@
 	height: 50px;
 	width: 100%;
 	text-align: center;
-	background-color: #1E7924;
+	background-color: #4CAF50;
 	color: white;
 	font-family: inherit;
 	font-size: 12pt;
@@ -144,11 +167,59 @@
 	padding: 0 5px 0 5px;
 }
 
+.buttons button:hover {
+	background-color: #1E7924;
+}
+
 .olderposts {
 	margin-left: auto;
 }
 
-p {
-	font-size: 12px;
-	font-style: inherit;
+@media only screen and (min-width: 800px){
+	.newestpost {
+		width: 80%;
+		margin: 0 10% 0 10%;
+	}
+
+	.recentposts {
+		width: 80%;
+		margin: 0 10% 0 10%;
+	}
+
+	.blogcontainer {
+		background-color: #e1f2e1;
+	}
+
+	.content {
+		background-color: #ffffff;
+	}
+}
+
+
+@media only screen and (min-width: 1200px) {
+
+	.content {
+		width: 1200px;
+		margin: auto;
+	}
+
+	.newestpost {
+		width: 750px;
+		padding: 50px 0 25px 0;
+		display: inline-block;
+		margin: 0 50px 0 50px;
+		vertical-align: top;
+	}
+
+	.recentposts {
+		max-width: 300px;
+		padding: 50px 0 50px 0;
+		display: inline-block;
+		margin: 0 50px 0 0;
+		vertical-align: top;
+	}
+
+	.largescreens {
+		display: none;
+	}
 }
