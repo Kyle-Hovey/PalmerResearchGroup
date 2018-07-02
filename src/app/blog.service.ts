@@ -46,7 +46,7 @@ export class BlogService {
   }
   
   deletePost(id) {
-    return this.http.get(this.deleteUrl + id);
+    return this.http.delete(this.deleteUrl + id);
   }
 
   deletePhoto(photo, id, model) {

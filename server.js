@@ -172,6 +172,7 @@ app.post('/api/sendmail', function (req, res) {
 //Upload a photo from the blog post page
 app.post('/api/upload', function(req, res, next) {
 	var path = '';
+	console.log("uploading photo");
 	upload(req, res, function(err) {
 		if (err) {
 			console.log(err);
@@ -199,6 +200,7 @@ app.post('/api/delete/:path/:id', function(req, res, next) {
 //Create a new post and add it to the database
 app.post('/api/blogpost', function(req, res, next) {
 	var newPost = req.body;
+	console.log(newPost);
 	db.collection(BLOG_COLLECTION).insertOne(newPost, function(err, doc) {
 		if (err) {
 			handleError(res, err.message, "Failed to create new post.");
@@ -222,11 +224,12 @@ app.post('/api/editpost', function(req, res, next) {
 
 app.delete('/api/deletePost/:id', function(req, res, next) {
 	var id = ObjectId(req.params.id);
+	console.log('deleting post');
 	db.collection(BLOG_COLLECTION).deleteOne({_id: id}, function(err) {
 		if (err) {
 			handleError(res, err.message, "Failed to delete post.");
 		} else {
-			res.status(201).send('Post Deleted');
+			res.status(201).json(req.params.id);
 		}
 	});
 })

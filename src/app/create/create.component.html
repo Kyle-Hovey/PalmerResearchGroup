@@ -51,7 +51,7 @@
 
 		<div class="submission" *ngIf="submitted">
 			<h1>You have submitted the following article.</h1>
-			<img class="currentPhoto" src="/uploads/{{model.photo}}">
+			<img *ngIf="model.photo" class="currentPhoto" src="/uploads/{{model.photo}}">
 			<h1>{{model.title}}</h1>
 			<p>{{model.author}}</p>
 			<p [innerHTML]='model.text'></p>
@@ -59,7 +59,7 @@
 
 		<div class="submission" *ngIf="edited">
 			<h1>You have edited the following article.</h1>
-			<img class="currentPhoto" src="/uploads/{{model.photo}}">
+			<img *ngIf="model.photo" class="currentPhoto" src="/uploads/{{model.photo}}">
 			<h1>{{model.title}}</h1>
 			<p>{{model.author}}</p>
 			<p [innerHTML]='model.text'></p>
@@ -87,7 +87,7 @@
 		<div class="recentposttitle">
 			{{post.title}}<br>
 			<div class="buttons3">
-				<button (click)="startEdit(post._id)">Edit</button><button (click)="deletePost(post._id)">Delete</button>
+				<button (click)="startEdit(post._id)">Edit</button><button (click)="deletePost(post._id, post.photo, post)">Delete</button>
 			</div>
 		</div>
 		<img *ngIf="post.photo" src="/uploads/{{post.photo}}" class="recentpostimage">
