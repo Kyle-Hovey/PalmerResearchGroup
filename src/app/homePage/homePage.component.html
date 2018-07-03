@@ -15,9 +15,30 @@
 <div class="blogarea">
 	<div class="postarea">
 		<div class="blogheader">
-			<h3>Latest Blog Post</h3>
+			<div class="blogtitle">
+				<h3>Latest Blog Post</h3>
+			</div>
+			<div class="blogbuttoncontainer">
+				<button type="button" class="blogbutton" routerLink="/blog">Check out the rest of the Palmer Project Blog!</button>
+			</div>
 		</div>
 		<div class="blogposts">
+			<div class="newestpost">
+				<div *ngIf="newestPost.photo" class="newest-post-photo">
+					<img src="/uploads/{{newestPost.photo}}" />
+					<h1>{{newestPost.title}}</h1>
+				</div>
+				<h1 *ngIf="!newestPost.photo">{{newestPost.title}}</h1>
+				<div class="underline"></div>
+				<p class="author">Written by {{newestPost.author}}</p>
+				<p *ngIf="!newestPost.editedDate" class="date">Date Published: {{newestPost.date | date:'MMM dd, yyyy hh:mm aa'}}</p>
+				<p *ngIf="newestPost.editedDate" class="date">Last Updated: {{newestPost.editedDate | date:'MMM dd, yyyy hh:mm aa'}}</p>
+				<div class="underline"></div>
+				<p [innerHTML]='newestPost.text'></p>
+			</div>
+			<div class="twitterfeed">
+				<a class="twitter-timeline" data-theme="light" data-height="750" data-link-color="#19CF86" href="https://twitter.com/PalmerProjectSC?ref_src=twsrc%5Etfw">Tweets by PalmerProjectSC</a>
+			</div>
 		</div>
 	</div>
 </div>
