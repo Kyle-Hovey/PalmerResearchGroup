@@ -35,7 +35,7 @@ p {
 .content {
 	width: 80%;
 	position: relative;
-	margin: 0 10% 0 10%;
+	margin: 0 10% 100px 10%;
 	background-color: #ffffff;
 }
 
@@ -201,6 +201,7 @@ p {
 	.content {
 		width: 1200px;
 		margin: auto;
+		margin-bottom: 100px;
 	}
 
 	.post {
