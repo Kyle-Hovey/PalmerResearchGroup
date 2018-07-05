@@ -30,3 +30,11 @@ agm-map {
 #searchLabel {
 	
 }
+
+@media screen and (max-width: 390px) {
+	#search {
+		width: 90%;
+		margin: 0 auto;
+		margin-bottom: 20px;
+	}
+}

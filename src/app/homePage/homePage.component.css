@@ -83,13 +83,14 @@ h1 {
 
 h2 {
 	margin: 0;
+	margin-top: 5px;
 	padding: 0;
 	font-size: 24px;
 	text-align: justify;
 }
 
 h3 {
-	font-size: 70px;
+	font-size: 50px;
 }
 
 p {
@@ -125,6 +126,7 @@ p {
 	width: 100%;
 	height: 300px;
 	margin: 0 auto;
+	margin-top: 10px;
 	background: rgba(200, 200, 200, .6);
 }
 
@@ -135,6 +137,10 @@ p {
 	
 	h2 {
 		font-size: 22px;
+	}
+	
+	h3 {
+		font-size: 45px;
 	}
 	
 	.righttext {
@@ -163,7 +169,7 @@ p {
 	}
 	
 	h3 {
-		font-size: 6.666666666666667vw
+		font-size: 40px;
 	}
 	
 	.blogheader {
@@ -185,8 +191,16 @@ p {
 		font-size: 18px;
 	}
 	
+	h3 {
+		font-size: 32px;
+	}
+	
 	button {
 		font-size: 15px;
+	}
+	
+	.blogarea {
+		height: 450px;
 	}
 }
 
@@ -197,5 +211,17 @@ p {
 	
 	h2 {
 		font-size: 14px;
+	}
+	
+	h3 {
+		font-size: 28px;
+	}
+	
+	.header {
+		height: 500px;
+	}
+	
+	.blogarea {
+		height: 400px;
 	}
 }
