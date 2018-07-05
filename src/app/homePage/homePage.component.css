@@ -282,7 +282,6 @@ h3 {
 	}
 	
 	.blogheader {
-		height: 6.666666666666667vw;
 		line-height: 6.666666666666667vw;
 	}
 
@@ -351,7 +350,7 @@ h3 {
 	}
 	
 	.blogposts {
-		margin-top: 50px;
+		margin-top: 25px;
 	} 
 }
 
