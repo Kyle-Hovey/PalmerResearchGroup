@@ -8,9 +8,9 @@
 }
 
 .header {
-	height: calc(100vh - 80px);
+	min-height: 100vh;
 	width: 100%;
-	display:inline-block;
+	display:flex;
 	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#6bba70+0,43b749+100 */
 	background: linear-gradient(to bottom, rgba(107,186,112,.6) 0%,rgba(67,183,73,.6) 100%),url(Palmer.jpeg); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	font-size: 0;
@@ -20,22 +20,17 @@
 
 .middle {
 	width: 65%;
-	height: 100%;
 	background: rgba(255, 255, 255, .4);
 	margin: 0 auto;
-	position: relative;
 	font-size: 0;
 }
 
 .middletext {
-	position: absolute;
-	top: 45%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	width: auto%;
+	width: 60%;
+	margin: 0 auto;
+	margin-top: 20px;
 	font-size: 0;
 	text-align: center;
-	margin-top: 25px;
 }
 
 button {
@@ -51,7 +46,6 @@ button {
     margin: 4px 2px;
     cursor: pointer;
 	margin-top: 20px;
-	margin-left: 20px;
 	transition: .3s;
 }
 
@@ -69,18 +63,19 @@ h2 {
 
 .contacthead {
 	font-size: 24px;
-	width: 100%;
+	width: 95%;
 	text-align: left;
 	margin: 0 auto;
 }
 
 .contactform input {
 	height: 10px;
-	width: 35vw;
+	width: 90%;
     padding: 10px 10px 10px 10px;
     border: solid thin gray;
     border-radius: 4px;
     background-color: #f1f1f1;
+	margin: 0 auto;
 	margin-bottom: 20px;
 	margin-top: 5px;
 	font-family:inherit;
@@ -94,11 +89,12 @@ h2 {
 
 #largecontactinput {
 	height: 150px;
-	width: 35vw;
+	width: 90%;
     padding: 10px 10px 10px 10px;
     border: solid thin gray;
     border-radius: 4px;
     background-color: #f1f1f1;
+	margin: 0 auto;
 	margin-bottom: 5px;
 	margin-top: 5px;
 	font-family:inherit;
@@ -109,4 +105,56 @@ h2 {
 	padding: 15px 0;
 	font-size: 24px;
 	text-align: left;
+}
+
+@media screen and (max-width: 1050px) {
+	.middle {
+		width: 100%;
+	}
+	
+	h1 {
+		font-size: 60px;
+	}
+	
+	h2 {
+		font-size: 45px;
+	}
+	
+	button {
+		margin: 0 auto;
+	}
+	
+	.middletext {
+		width: 90%;
+	}
+}
+
+@media only screen and (max-width: 800px) {
+	h1 {
+		font-size: 50px;
+	}
+	
+	h2 {
+		font-size: 30px;
+	}
+
+	.contacthead {
+		font-size: 18px;
+	}
+	
+	button {
+		font-size: 16px;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	
+	h1 {
+		font-size: 40px;
+	}
+	
+	h2 {
+		font-size: 24px;
+	}
+	
 }

@@ -14,7 +14,7 @@
 }
 
 .middle {
-	width: 65%;
+	width: 75%;
 	height: 100%;
 	background: rgba(255, 255, 255, .4);
 	margin: 0 auto;
@@ -44,6 +44,17 @@
 	font-size: 24px;
 	width: 300px;
 	height: 500px;
+	display: inline-block;
+	vertical-align: top;
+	margin: 5px 5px 5px 5px;
+	position: relative;
+	background: rgba(0, 0, 0, .2);
+}
+
+.list-group-item-nopic {
+	font-size: 24px;
+	width: 300px;
+	height: 250px;
 	display: inline-block;
 	vertical-align: top;
 	margin: 5px 5px 5px 5px;
@@ -102,4 +113,89 @@ h5 {
 	font-weight: 100;
 	margin-top: 10px;
 	text-indent: 2em;
+}
+
+@media screen and (max-width: 1500px) {
+	.list-group-item {
+		width: 250px;
+		height: 425px;
+	}
+	
+	.list-group-item-nopic {
+		width: 250px;
+		height: 212px;
+	}
+	
+	h1 {
+		font-size: 50px;
+	}
+	
+	h3 {
+		font-size: 16px;
+	}
+	
+	h4 {
+		font-size: 14px;
+	}
+}
+
+@media screen and (max-width: 1050px) {
+	.list-group-item {
+		width: 180px;
+		height: 300px;
+	}
+	
+	.list-group-item-nopic {
+		width: 180px;
+		height: 150px;
+	}
+	
+	.currentbox {
+		width: 90%;
+	}
+	
+	h1 {
+		font-size: 40px;
+	}
+	
+	h3 {
+		font-size: 14px;
+	}
+	
+	h4 {
+		font-size: 12px;
+	}
+}
+
+@media screen and (max-width: 850px) {
+	.middle {
+		width: 100%;
+	}
+}
+@media screen and (max-width: 750px) {
+	.list-group-item {
+		width: 140px;
+		height: 300px;
+	}
+	
+	.list-group-item-nopic {
+		width: 140px;
+		height: 150px;
+	}
+	
+	.currentbox {
+		width: 100%;
+	}
+	
+	h1 {
+		font-size: 34px;
+	}
+	
+	h3 {
+		font-size: 12px;
+	}
+	
+	h4 {
+		font-size: 12px;
+	}
 }

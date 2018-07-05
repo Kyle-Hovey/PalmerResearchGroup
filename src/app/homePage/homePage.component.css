@@ -83,9 +83,14 @@ h1 {
 
 h2 {
 	margin: 0;
+	margin-top: 5px;
 	padding: 0;
 	font-size: 24px;
 	text-align: justify;
+}
+
+h3 {
+	font-size: 50px;
 }
 
 p {
@@ -142,6 +147,8 @@ h3 {
 	width: 100%;
 	height: auto;
 	margin: 0 auto;
+	margin-top: 10px;
+	background: rgba(200, 200, 200, .6);
 	margin-bottom: 100px;
 	background: #ffffff;
 }
@@ -227,6 +234,10 @@ h3 {
 		font-size: 22px;
 	}
 	
+	h3 {
+		font-size: 45px;
+	}
+	
 	.righttext {
 		top: 0;
 		left: 0;
@@ -266,6 +277,15 @@ h3 {
 		font-size: 22px;
 	}
 	
+	h3 {
+		font-size: 40px;
+	}
+	
+	.blogheader {
+		height: 6.666666666666667vw;
+		line-height: 6.666666666666667vw;
+	}
+
 	button {
 		margin: 20px auto;
 	}
@@ -295,8 +315,17 @@ h3 {
 		font-size: 18px;
 	}
 	
+	h3 {
+		font-size: 32px;
+	}
+	
 	button {
-		font-size: 15px;
+		font-size: 12px;
+		padding: 10px 18px;
+	}
+	
+	.blogarea {
+		height: 450px;
 	}
 
 	.postarea {
@@ -320,7 +349,10 @@ h3 {
 		margin-right: 10%;
 		margin-left: 10%;
 	}
-
+	
+	.blogposts {
+		margin-top: 50px;
+	} 
 }
 
 @media screen and (max-width: 400px) {
@@ -330,5 +362,17 @@ h3 {
 	
 	h2 {
 		font-size: 14px;
+	}
+	
+	h3 {
+		font-size: 28px;
+	}
+	
+	.header {
+		height: 500px;
+	}
+	
+	.blogarea {
+		height: 400px;
 	}
 }
