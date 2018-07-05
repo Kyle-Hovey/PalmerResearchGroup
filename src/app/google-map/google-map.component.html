@@ -1,0 +1,20 @@
+<div class="container">
+	
+	<div class="form-group">
+		<label for="search"> <strong>Search for a location: </strong></label>
+		<input placeholder="Search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" id="search" #search [formControl]="searchControl">
+	</div>
+	<div class="map">
+		<agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" [zoomControl]="false" [streetViewControl]=false (mapClick)="mapClicked($event)" [mapTypeId]="mapTypeId" [clickableIcons]=false>
+			
+			<agm-marker *ngFor="let m of markers; let i = index" [latitude]="m.latitude" [longitude]="m.longitude" [label]="m.label" [markerDraggable]="m.draggable" (dragEnd)="markerDragEnd(m, $event)"> 
+			
+				<agm-info-window [isOpen]="true">
+				  <p class="noindent {{risktype}}"><strong>Percentile: {{_palmer.percentile}} % </strong></p>
+				</agm-info-window>
+			
+			</agm-marker>
+		
+		</agm-map>
+	</div>
+</div>

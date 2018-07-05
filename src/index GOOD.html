@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+	<head>
+		<script type="text/javascript" src="script.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="utf-8">
+		<base href="/">
+		<link href="//fonts.googleapis.com/css?family=Archivo Narrow" rel='stylesheet'>
+		<link href="//fonts.googleapis.com/css?family=Quicksand" rel='stylesheet'>
+		<link href="//fonts.googleapis.com/css?family=Open+Sans" rel='stylesheet'>
+		<link href="//fonts.googleapis.com/css?family=Catamaran" rel='stylesheet'>
+		<link href="//fonts.googleapis.com/css?family=Lato" rel='stylesheet'>
+		<link href="//fonts.googleapis.com/css?family=Raleway" rel='stylesheet'>
+		<link href="//fonts.googleapis.com/css?family=Muli" rel='stylesheet'>
+		<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro" rel='stylesheet'>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	</head>
+	<body>
+		<div class="main">
+			<div class="bodytext">
+				<app-root></app-root>
+			</div>
+		</div>
+		<script>
+		function accessMenu() {
+			var x = document.getElementById("nav");
+			if (x.className === "navbarClass"){
+				x.className += " responsiveMenu";
+			} else {
+				x.className = "navbarClass";
+			}
+		}
+		
+		function removeMenu() {
+			var x = document.getElementById("nav");
+			x.className = "navbarClass";
+		}
+		</script>
+	</body>
+</html>

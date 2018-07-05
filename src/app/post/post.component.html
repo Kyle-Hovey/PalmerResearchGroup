@@ -1,0 +1,78 @@
+<h1 class="blogheader">The Palmer Project Blog</h1>
+
+
+<div class="blogcontainer">
+	<div class="content">
+		<div class="post">
+			<div *ngIf="post.photo" class="post-photo">
+				<img src="/uploads/{{post.photo}}" />
+				<h1>{{post.title}}</h1>
+			</div>
+			<h1 *ngIf="!post.photo">{{post.title}}</h1>
+			<div class="underline"></div>
+			<p class="author">Written by {{post.author}}</p>
+			<p *ngIf="!post.editedDate" class="date">Date Published: {{post.date | date:'MMM dd, yyyy hh:mm aa'}}</p>
+			<p *ngIf="post.editedDate" class="date">Last Updated: {{post.editedDate | date:'MMM dd, yyyy hh:mm aa'}}</p>
+			<div class="underline"></div>
+			<p [innerHTML]='post.text'></p>
+			<div class="underline largescreens"></div>
+		</div>
+
+		<div *ngIf="!noPosts" class="recentposts">
+			
+			<h1>Recent Posts</h1>
+			
+			<div class="buttons largescreens">
+				<div class="newerposts">
+					<button *ngIf="cursor > 0" (click)="getNewer()">&lt; Newer Posts</button>
+				</div>
+				<div class="olderposts">
+					<button *ngIf="!noMorePosts" (click)="getOlder()" >Older Posts &gt;</button>
+				</div>			
+			</div>
+			
+			<div class="underline"></div>
+			
+			<div *ngFor="let post of posts" routerLink="/post/{{post._id}}" (click)="changePost(post._id)" class="recentpost">
+				<div class="recentposttitle">{{post.title}}</div>
+				<img *ngIf="post.photo" src="/uploads/{{post.photo}}" class="recentpostimage">
+			</div>
+			
+			<div class="buttons">
+
+				<div class="newerposts">
+					<button *ngIf="cursor > 0" (click)="getNewer()">&lt; Newer Posts</button>
+				</div>
+
+				<div class="olderposts">
+					<button *ngIf="!noMorePosts" (click)="getOlder()" >Older Posts &gt;</button>
+				</div>
+
+			</div>
+			<div class="twitterfeed">
+				<ng4-twitter-timeline [dataSrc]="{sourceType: 'profile', screenName: 'PalmerProjectSC'}" [opts]="{height: 750, chrome: 'noscrollbar'}"></ng4-twitter-timeline>
+			</div>
+		</div>
+
+		<div *ngIf="noPosts" class="recentposts">
+			<h1>Recent Posts</h1>
+			<div class="buttons largescreens">
+				<div class="newerposts">
+					<button (click)="getNewer()">&lt; Newer Posts</button>
+				</div>
+			</div>
+			<div class="underline"></div>
+			<div class="recentpost">
+				<div class="recentposttitle">No More Posts</div>
+			</div>
+			<div class="buttons">
+				<div class="newerposts">
+					<button (click)="getNewer()">&lt; Newer Posts</button>
+				</div>
+			</div>
+			<div class="twitterfeed">
+				<ng4-twitter-timeline [dataSrc]="{sourceType: 'profile', screenName: 'PalmerProjectSC'}" [opts]="{height: 750, chrome: 'noscrollbar'}"></ng4-twitter-timeline>
+			</div>
+		</div>
+	</div>
+</div>

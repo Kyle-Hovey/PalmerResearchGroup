@@ -1,0 +1,220 @@
+h1 {
+	font-size: 40px;
+	font-family: inherit;
+	margin-bottom: 5px;
+}
+
+p {
+	font-size: 14pt;
+	font-family: inherit;
+}
+
+.header {
+	height: calc(100vh - 80px);
+	width: 100%;
+	display:inline-block;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#6bba70+0,43b749+100 */
+	background: linear-gradient(to bottom, rgba(107,186,112,.6) 0%,rgba(67,183,73,.6) 100%),url(Palmer.jpeg); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	font-size: 0;
+	margin: 0;
+	padding: 0;
+}
+
+.middle {
+	width: 100%;
+	height: 100%;
+	background: rgba(255, 255, 255, .4);
+	margin: 0 auto;
+	position: relative;
+	font-size: 0;
+	overflow-y: auto;
+	overflow-x: hidden; 
+}
+
+.middletext {
+	position: absolute;
+	top: 45%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 100%;
+	font-size: 0;
+	text-align: center;
+	margin-top: 50px;
+}
+
+textarea {
+	height: 150px;
+	width: 80%;
+    padding: 10px 10px 10px 10px;
+    border: solid thin gray;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+	margin-bottom: 5px;
+	margin-top: 5px;
+	font-family:inherit;
+	resize: none;
+}
+
+.createform input {
+	height: 10px;
+	width: 80%;
+    padding: 10px 10px 10px 10px;
+    border: solid thin gray;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+	margin-bottom: 20px;
+	margin-top: 5px;
+	font-family:inherit;
+}
+
+#photo {
+	height: 10px;
+	width: 80%;
+    padding: 10px 10px 10px 10px;
+    border: none;
+    background-color: transparent;
+    border-radius: 4px;
+    margin-bottom: 20px;
+	margin-top: 5px;
+	font-family:inherit;
+}
+
+.createform {
+	padding: 10px 10px 10px 10px;
+	background: rgba(0, 0, 0, .1);
+	text-align: center;
+	font-size: 14px;
+}
+
+.underline {
+	width: 100%;
+	height: 2pt;
+	background-color: #1E7924;
+}
+
+.submission{
+	width: 80%;
+	margin: 0 10% 0 10%;
+}
+
+.recentposts {
+	width: 80%;
+	padding: 0 0 50px 0;
+	display: inline-block;
+	margin: 25px 10% 0 10%;
+}
+
+.recentposts h1{
+	font-size: 24pt;
+	font-style: inherit;
+	color: #1E7924;
+}
+
+.recentpost {
+	height: auto;
+	min-height: 100px;
+	width: 100%;
+	border-bottom: 2pt solid #1E7924;
+	overflow: hidden;
+	display: flex;
+	color: black;
+	background-color: white;
+}
+
+.recentposttitle {
+	width: 60%;
+	font-family: inherit;
+	font-size: 14pt;
+	font-weight: bold;
+	align-self: center;
+	color: inherit;
+	padding-left: 10px;
+}
+
+
+.recentpostimage {
+	width: 30%;
+	max-width: 300px;
+	height: 80px;
+	margin-left: auto;
+	align-self: center;
+	object-fit: cover;
+	padding-right: 10px;
+}
+
+.currentPhoto {
+	height: 200px;
+}
+
+.buttons {
+	display: flex;
+	justify-content: space-between;
+	width: 80%;
+	height: 50px;
+	margin: 10px 10% 10px 10%;
+}
+
+.buttons button {
+	width: 100%;
+}
+
+.olderposts {
+	margin-left: auto;
+}
+
+.buttons2 {
+	display: flex;
+	justify-content: space-between;
+	width: 80%;
+	height: 50px;
+	margin: 0 10% 10px 10%;
+}
+
+.buttons2 button {
+	width: auto;
+
+}
+
+.buttons3{
+	display: flex;
+	justify-content: flex-start;
+	width: auto;
+	height: 50px;
+	margin: 10px 0 10px 0;
+}
+
+.buttons3 button{
+	width: 100px;
+	margin: 0 5px 0 5px; 
+}
+
+button {
+	height: 50px;
+	text-align: center;
+	background-color: #4CAF50;
+	color: white;
+	font-family: inherit;
+	font-size: 12pt;
+	font-weight: bold;
+	border: none;
+	padding: 0 5px 0 5px;
+}
+
+button:hover {
+	background-color: #1E7924;
+}
+
+@media only screen and (min-width: 800px){
+	.middle{
+		width: 65%;
+	}
+
+	.middletext {
+		width:60%;
+	}
+
+	.buttons2 {
+		width: 100%;
+		margin: 0 0 10px 0;
+	}
+}

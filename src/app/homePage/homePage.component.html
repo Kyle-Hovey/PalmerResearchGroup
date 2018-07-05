@@ -1,0 +1,44 @@
+<div class="header">
+	<div class="left">
+		<div class="leftimage">
+			<img class="img-responsive" src="staticimages/Synth2018.jpeg">
+		</div>
+	</div>
+	<div class="right">
+		<div class="righttext">
+			<h1>Welcome to the Palmer Project.</h1>
+			<h2>The Palmer Project at Simpson College has recently developed a model for assessing risk of Palmer amaranth infestation in the state of Iowa. The purpose of this website is to allow producers, and any other interested stakeholder, to see Palmer amaranth infestation risk in any location within Iowa. The model is based in predictive analytics and was produced from the analysis of multiple data sets.</h2>
+			<button type="button" routerLink="/palmer">Evaluate Risk Now</button>
+		</div>
+	</div>
+</div>
+<div class="blogarea">
+	<div class="postarea">
+		<div class="blogheader">
+			<div class="blogtitle">
+				<h3>Latest Blog Post</h3>
+			</div>
+			<div class="blogbuttoncontainer">
+				<button type="button" class="blogbutton" routerLink="/blog">Check out the rest of the Palmer Project Blog!</button>
+			</div>
+		</div>
+		<div class="blogposts">
+			<div class="newestpost">
+				<div *ngIf="newestPost.photo" class="newest-post-photo">
+					<img src="/uploads/{{newestPost.photo}}" />
+					<h1>{{newestPost.title}}</h1>
+				</div>
+				<h1 *ngIf="!newestPost.photo">{{newestPost.title}}</h1>
+				<div class="underline"></div>
+				<p class="author">Written by {{newestPost.author}}</p>
+				<p *ngIf="!newestPost.editedDate" class="date">Date Published: {{newestPost.date | date:'MMM dd, yyyy hh:mm aa'}}</p>
+				<p *ngIf="newestPost.editedDate" class="date">Last Updated: {{newestPost.editedDate | date:'MMM dd, yyyy hh:mm aa'}}</p>
+				<div class="underline"></div>
+				<p [innerHTML]='newestPost.text'></p>
+			</div>
+			<div class="twitterfeed">
+				<ng4-twitter-timeline [dataSrc]="{sourceType: 'profile', screenName: 'PalmerProjectSC'}" [opts]="{height: 750, chrome: 'noscrollbar'}"></ng4-twitter-timeline>
+			</div>
+		</div>
+	</div>
+</div>

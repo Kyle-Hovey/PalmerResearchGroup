@@ -1,0 +1,122 @@
+<div class="header">
+    <div class="middle">
+    	<div class="buttons2">
+    		<button (click)="logout()">Logout</button><button *ngIf="EditingPost || submitted" (click)="newPost()">New Post</button>
+    	</div>
+        <div class="middletext">
+			<div *ngIf="!submitted && !edited">
+				<div *ngIf="NewPost">
+					<h1>Write a new blog post</h1>
+
+					<form (ngSubmit)="submitNew()" #postForm="ngForm" class="createform">
+						<label for="title">Title of Article: </label><br>
+						<input type="text" name="title" placeholder="Title of post"required [(ngModel)]="model.title"><br>
+						<label for="author">Author: </label><br>
+						<input type="text" name="author" placeholder="Author of post"required [(ngModel)]="model.author"><br>
+						<label for="text">Content of article: </label><br>
+						<textarea name="text" required [(ngModel)]="model.text"></textarea><br>
+						<label for="photo">Upload photograph:</label><br><br>
+						<input id="photo" type="file" name="photo" required><br>
+						<div class="buttons">
+							<button type="submit">Post Article</button>	
+						</div>
+					</form>
+				</div>
+
+				<div *ngIf="EditingPost">
+					<h1>Edit blog post</h1>
+
+					<form (ngSubmit)="submitEdit()" #postForm="ngForm" class="createform">
+						<p>Originally Written: {{model.date | date: 'MMM dd, yyyy hh:mm aa'}}</p>
+						<label for="title">Title of Article: </label><br>
+						<input type="text" name="title" placeholder="Title of post"required [(ngModel)]="model.title"><br>
+						<label for="author">Author: </label><br>
+						<input type="text" name="author" placeholder="Author of post"required [(ngModel)]="model.author"><br>
+						<label for="text">Content of article: </label><br>
+						<textarea name="text"required [(ngModel)]="model.text"></textarea><br>
+						<label for="photo">Upload photograph:</label><br><br>
+						<div *ngIf="model.photo">			
+							<img src="/uploads/{{model.photo}}" class="currentPhoto">
+							<button type="button" (click)="deleteCurrentPhoto(model.photo, model._id)">Delete Current Photo</button>
+						</div>
+						<input *ngIf="!model.photo" id="photo" type="file" name="photo" required><br><br>
+						<div class="buttons">
+							<button type="submit">Update Article</button>
+						</div>
+					</form>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="submission" *ngIf="submitted">
+			<h1>You have submitted the following article.</h1>
+			<img *ngIf="model.photo" class="currentPhoto" src="/uploads/{{model.photo}}">
+			<h1>{{model.title}}</h1>
+			<p>{{model.author}}</p>
+			<p [innerHTML]='model.text'></p>
+		</div>
+
+		<div class="submission" *ngIf="edited">
+			<h1>You have edited the following article.</h1>
+			<img *ngIf="model.photo" class="currentPhoto" src="/uploads/{{model.photo}}">
+			<h1>{{model.title}}</h1>
+			<p>{{model.author}}</p>
+			<p [innerHTML]='model.text'></p>
+		</div>
+
+	</div>
+</div>
+
+<div *ngIf="!noPosts" class="recentposts">
+	
+	<h1>Recent Posts</h1>
+	
+	<div class="buttons largescreens">
+		<div class="newerposts">
+			<button *ngIf="cursor > 0" (click)="getNewer()">&lt; Newer Posts</button>
+		</div>
+		<div class="olderposts">
+			<button *ngIf="!noMorePosts" (click)="getOlder()" >Older Posts &gt;</button>
+		</div>			
+	</div>
+	
+	<div class="underline"></div>
+	
+	<div *ngFor="let post of posts" class="recentpost">
+		<div class="recentposttitle">
+			{{post.title}}<br>
+			<div class="buttons3">
+				<button (click)="startEdit(post._id)">Edit</button><button (click)="deletePost(post._id, post.photo, post)">Delete</button>
+			</div>
+		</div>
+		<img *ngIf="post.photo" src="/uploads/{{post.photo}}" class="recentpostimage">
+	</div>
+	
+	<div class="buttons">
+
+		<div class="newerposts">
+			<button *ngIf="cursor > 0" (click)="getNewer()">&lt; Newer Posts</button>
+		</div>
+
+		<div class="olderposts">
+			<button *ngIf="!noMorePosts" (click)="getOlder()" >Older Posts &gt;</button>
+		</div>
+
+	</div>
+</div>
+
+<div *ngIf="noPosts" class="recentposts">
+	<h1 style="text-align: center">No posts to show.</h1>
+	<div class="buttons largescreens">
+		<div class="newerposts">
+			<button *ngIf="cursor > 0" (click)="getNewer()">&lt; Newer Posts</button>
+		</div>
+		<div class="olderposts">
+			<button *ngIf="!noMorePosts" (click)="getOlder()" >Older Posts &gt;</button>
+		</div>			
+	</div>
+</div>
+
+
+
