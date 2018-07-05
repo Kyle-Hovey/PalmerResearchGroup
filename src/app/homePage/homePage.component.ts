@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { Post } from "../post";
 import { BlogService } from "../blog.service";
+import { Ng4TwitterTimelineService } from 'ng4-twitter-timeline/lib/index';
 
 @Component({
     selector: 'app-homePage',
@@ -10,7 +11,7 @@ import { BlogService } from "../blog.service";
 })
 export class HomePageComponent implements OnInit {
 
-    constructor(private router: Router, private blogService: BlogService) { }
+    constructor(private router: Router, private blogService: BlogService, private ng4TwitterTimelineService: Ng4TwitterTimelineService) { }
 
 	newestPost: Post;
 

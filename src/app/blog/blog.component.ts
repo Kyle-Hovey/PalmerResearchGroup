@@ -1,14 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../post';
 import { BlogService } from '../blog.service';
+import { Router, NavigationEnd } from '@angular/router';
+
 @Component({
     selector: 'app-blog',
     templateUrl: './blog.component.html',
     styleUrls: ['./blog.component.css']
 })
-export class BlogComponent implements OnInit{
+export class BlogComponent implements OnInit {
+    
 
-    constructor(private blogService: BlogService) { }
+    constructor(private blogService: BlogService, private _router: Router) { }
 
     posts: Post[];
 
@@ -68,4 +71,5 @@ export class BlogComponent implements OnInit{
       this.cursor += 5;
       this.getBlogPosts(this.cursor);
     }
+
 }

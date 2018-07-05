@@ -25,8 +25,7 @@ import { LoginComponent } from './login/login.component';
 
 import { ErrorHandler } from './error-handler';
 import { ServerErrorsInterceptor } from './server-errors.interceptor';
-
-
+import { Ng4TwitterTimelineModule } from 'ng4-twitter-timeline/lib/index';
 
 @NgModule({
   declarations: [
@@ -47,6 +46,7 @@ import { ServerErrorsInterceptor } from './server-errors.interceptor';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    Ng4TwitterTimelineModule,
     AppRoutingModule,
     AgmCoreModule.forRoot({
       apiKey: environment.googleApiKey,

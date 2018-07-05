@@ -37,7 +37,7 @@
 				<p [innerHTML]='newestPost.text'></p>
 			</div>
 			<div class="twitterfeed">
-				<a class="twitter-timeline" data-theme="light" data-height="750" data-link-color="#19CF86" href="https://twitter.com/PalmerProjectSC?ref_src=twsrc%5Etfw">Tweets by PalmerProjectSC</a>
+				<ng4-twitter-timeline [dataSrc]="{sourceType: 'profile', screenName: 'PalmerProjectSC'}" [opts]="{height: 750, chrome: 'noscrollbar'}"></ng4-twitter-timeline>
 			</div>
 		</div>
 	</div>

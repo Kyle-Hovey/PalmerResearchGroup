@@ -1,7 +1,7 @@
 <h1 class="blogheader">The Palmer Project Blog</h1>
 
 
-<div class="blogcontainer">
+<div class="blogcontainer" id="blogcontainer">
 	<div class="content">
 		<div class="newestpost">
 			<div *ngIf="newestPost.photo" class="newest-post-photo">
@@ -49,6 +49,9 @@
 				</div>
 
 			</div>
+			<div class="twitterfeed">
+				<ng4-twitter-timeline [dataSrc]="{sourceType: 'profile', screenName: 'PalmerProjectSC'}" [opts]="{height: 750, chrome: 'noscrollbar'}"></ng4-twitter-timeline>
+			</div>
 		</div>
 
 		<div *ngIf="noPosts" class="recentposts">
@@ -67,6 +70,9 @@
 					<button (click)="getNewer()">&lt; Newer Posts</button>
 				</div>
 			</div>
+			<div class="twitterfeed">
+				<ng4-twitter-timeline [dataSrc]="{sourceType: 'profile', screenName: 'PalmerProjectSC'}" [opts]="{height: 750, chrome: 'noscrollbar'}"></ng4-twitter-timeline>
+			</div>			
 		</div>
 	</div>
 </div>

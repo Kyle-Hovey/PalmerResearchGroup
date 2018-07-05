@@ -49,6 +49,9 @@
 				</div>
 
 			</div>
+			<div class="twitterfeed">
+				<ng4-twitter-timeline [dataSrc]="{sourceType: 'profile', screenName: 'PalmerProjectSC'}" [opts]="{height: 750, chrome: 'noscrollbar'}"></ng4-twitter-timeline>
+			</div>
 		</div>
 
 		<div *ngIf="noPosts" class="recentposts">
@@ -66,6 +69,9 @@
 				<div class="newerposts">
 					<button (click)="getNewer()">&lt; Newer Posts</button>
 				</div>
+			</div>
+			<div class="twitterfeed">
+				<ng4-twitter-timeline [dataSrc]="{sourceType: 'profile', screenName: 'PalmerProjectSC'}" [opts]="{height: 750, chrome: 'noscrollbar'}"></ng4-twitter-timeline>
 			</div>
 		</div>
 	</div>
