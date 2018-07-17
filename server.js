@@ -24,6 +24,14 @@ var auth = ExpressJwt({
 //Required for File Upload
 var multer = require('multer');
 var fs = require('fs');
+var cloudinary = require('cloudinary').v2;
+
+cloudinary.config({ 
+  cloud_name: 'hldolvwm8', 
+  api_key: '161116137151584', 
+  api_secret: 'fnJPIIypBl4Kreu18W_dHYQP1Mo' 
+});
+
 
 //DB Collection Identities
 var BLOG_COLLECTION = "posts";
